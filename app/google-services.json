@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1086456014684",
+    "project_id": "mygpa-be32f",
+    "storage_bucket": "mygpa-be32f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086456014684:android:d5655dc241f6c4b5258399",
+        "android_client_info": {
+          "package_name": "com.example.mygpa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh_RRVswoX2kYHnKDh9i75XDSYa6kxWuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
