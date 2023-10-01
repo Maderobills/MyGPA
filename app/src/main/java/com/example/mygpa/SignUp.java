@@ -73,30 +73,36 @@ public class SignUp extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(password)){
                     Toast.makeText(SignUp.this, "Enter Password", Toast.LENGTH_SHORT).show();
-
-                    if (TextUtils.isEmpty(re_password)){
-                        Toast.makeText(SignUp.this, "Re-Enter Password", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
                     return;
                 }
+                if (TextUtils.isEmpty(re_password)){
+                    Toast.makeText(SignUp.this, "Re-Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.equals(re_password)){
 
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(SignUp.this, "Account Created.",
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(SignUp.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignUp.this, "Account Created.",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(SignUp.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+                }else {
+                    Toast.makeText(SignUp.this, "Passwords do not Match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 
