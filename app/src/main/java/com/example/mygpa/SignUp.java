@@ -32,7 +32,7 @@ public class SignUp extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), MyDashboard.class);
+            Intent intent = new Intent(getApplicationContext(), DrawerMenu.class);
             startActivity(intent);
             finish();
         }
@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SignUp.this, "Account Created.",
                                                 Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), DrawerMenu.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
