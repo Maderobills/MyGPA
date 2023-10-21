@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -12,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,21 +38,12 @@ public class DrawerMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_menu);
 
-        navigationView = findViewById(R.id.nav_view);
 
         fab = findViewById(R.id.fab);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottom_view);
-
-        setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DashboardHome()).commit();
-            navigationView.setCheckedItem(R.id.home_dash);
         }
 
         replaceFragment(new DashboardHome());
@@ -57,14 +52,12 @@ public class DrawerMenu extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home_dash) {
                 replaceFragment(new DashboardHome());
-            } else if (item.getItemId() == R.id.sem_course) {
-                replaceFragment(new SemesterCourses());
-            } else if (item.getItemId() == R.id.sett_ings) {
-                replaceFragment(new Settings());
-            } else if (item.getItemId() == R.id.acc_manage) {
+            } else if (item.getItemId() == R.id.reports_bottom) {
+                replaceFragment(new ReportsHistory());
+            } else if (item.getItemId() == R.id.chart_mode) {
+                replaceFragment(new Analysis());
+            } else if (item.getItemId() == R.id.settings) {
                 replaceFragment(new AccountManagement());
-            } else if (item.getItemId() == R.id.help) {
-                replaceFragment(new HelpSupport());
             }
             return true;
         });

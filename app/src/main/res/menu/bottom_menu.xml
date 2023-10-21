@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/home_dash"
+        android:icon="@drawable/star_rate"
+        android:title="Dashboard"/>
+
+    <item
         android:id="@+id/reports_bottom"
         android:icon="@drawable/summary"
         android:title="Reports"/>
@@ -12,6 +17,11 @@
         android:id="@+id/chart_mode"
         android:icon="@drawable/chart_24"
         android:title="Analysis"/>
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings"
+        android:title="Settings"/>
 
 
 </menu>
