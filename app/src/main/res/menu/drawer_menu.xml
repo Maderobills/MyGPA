@@ -33,7 +33,7 @@
             <menu>
                 <item
                     android:id="@+id/acc_manage"
-                    android:icon="@drawable/account"
+                    android:icon="@drawable/info_24"
                     android:title="Account Management"/>
                 <item
                     android:id="@+id/help"

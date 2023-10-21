@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -94,7 +95,7 @@ public class DrawerMenu extends AppCompatActivity {
         LinearLayout videoLayout = dialog.findViewById(R.id.layoutVideo);
         LinearLayout shortsLayout = dialog.findViewById(R.id.layoutShorts);
         LinearLayout liveLayout = dialog.findViewById(R.id.layoutLive);
-        LinearLayout cancelButton = dialog.findViewById(R.id.cancelButton);
+        ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         videoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +120,7 @@ public class DrawerMenu extends AppCompatActivity {
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 dialog.dismiss();
             }
         });
