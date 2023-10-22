@@ -6,10 +6,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class DrawerMenu extends AppCompatActivity {
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DashboardHome()).commit();
+
         }
 
         replaceFragment(new DashboardHome());
@@ -71,6 +74,8 @@ public class DrawerMenu extends AppCompatActivity {
 
     }
 
+
+
     private void replaceFragment(Fragment fragment){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -85,9 +90,9 @@ public class DrawerMenu extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottomsheetlayout);
 
-        LinearLayout videoLayout = dialog.findViewById(R.id.layoutVideo);
-        LinearLayout shortsLayout = dialog.findViewById(R.id.layoutShorts);
-        LinearLayout liveLayout = dialog.findViewById(R.id.layoutLive);
+        LinearLayout videoLayout = dialog.findViewById(R.id.add_course);
+        LinearLayout shortsLayout = dialog.findViewById(R.id.cal_gpa);
+        LinearLayout addRecord = dialog.findViewById(R.id.add_record);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         videoLayout.setOnClickListener(new View.OnClickListener() {
@@ -104,11 +109,11 @@ public class DrawerMenu extends AppCompatActivity {
                 showToast("Add GPA2");
             }
         });
-        liveLayout.setOnClickListener(new View.OnClickListener() {
+        addRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                showToast("Add GPA3");
+                AddRecordPopup();
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +126,27 @@ public class DrawerMenu extends AppCompatActivity {
         setupDialogAppearance(dialog);
     }
 
+    private void AddRecordPopup() {
+
+        Dialog dialog = null;
+       /* Button closediag = dialog.findViewById(R.id.close_add_btn);*/
+
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.addgparecord_popup);
+
+        Dialog finalDialog = dialog;
+        /*closediag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finalDialog.dismiss();
+            }
+        });*/
+
+        setupDialogAppearanceForm(dialog);
+
+    }
+
     private void showToast(String message) {
         Toast.makeText(DrawerMenu.this, message, Toast.LENGTH_SHORT).show();
     }
@@ -131,6 +157,14 @@ public class DrawerMenu extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    private void setupDialogAppearanceForm(Dialog dialog) {
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.CENTER);
     }
 
 
