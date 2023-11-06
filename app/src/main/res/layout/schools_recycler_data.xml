@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:layout_margin="5dp"
+    android:elevation="5dp"
+    android:padding="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DOMINION UNIVERSITY COLLEGE"
+                android:textColor="@color/lavender"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textStyle="bold"
+                android:id="@+id/School_name"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Programme"
+                android:textColor="@color/black"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textStyle="bold"
+                android:layout_below="@+id/School_name"
+                android:id="@+id/type_txt_income"
+                android:maxLines="1"/>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Scale"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textStyle="bold"
+                android:id="@+id/scale_type"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Semesters"
+                android:textColor="@color/black"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textStyle="bold"
+                android:layout_below="@+id/scale_type"
+                android:id="@+id/sem_number"
+                android:maxLines="1"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

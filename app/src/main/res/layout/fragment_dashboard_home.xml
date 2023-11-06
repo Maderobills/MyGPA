@@ -22,24 +22,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="2.5dp"
             android:padding="5dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:background="@drawable/form_input_background">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center">
+                android:layout_marginHorizontal="2dp"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/form_input_background">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:background="@drawable/form_input_background"
                     android:text="Index No.: "
-                    android:textColor="#fff"
+                    android:paddingHorizontal="5dp"
+                    android:textColor="@color/lavender"
                     android:textSize="15sp" />
 
                 <TextView
@@ -47,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AAA/BBB/000000"
-                    android:textColor="#4f40af"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -56,14 +61,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center">
+                android:layout_marginHorizontal="2dp"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/form_input_background">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Level: "
-                    android:textColor="#fff"
+                    android:textColor="@color/lavender"
+                    android:background="@drawable/form_input_background"
+                    android:paddingHorizontal="5dp"
                     android:textSize="15sp" />
 
                 <TextView
@@ -71,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="300"
-                    android:textColor="#4f40af"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -80,166 +90,312 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center">
+                android:layout_marginHorizontal="2dp"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/form_input_background">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Academic Year: "
-                    android:textColor="#fff"
-                    android:textSize="15sp" />
+                    android:text="Year: "
+                    android:textColor="@color/lavender"
+                    android:textSize="15sp"
+                    android:textAlignment="viewEnd"
+                    android:background="@drawable/form_input_background"
+                    android:paddingHorizontal="5dp"/>
 
                 <TextView
                     android:id="@+id/academic_year_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2023/2024"
-                    android:textColor="#4f40af"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="2dp"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/form_input_background">
+
+
+
+                <ImageView
+                    android:id="@+id/class_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/star"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/form_input_background"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginVertical="2.5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="2.5dp"
+                    android:background="@drawable/form_input_background">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:background="@drawable/form_input_background">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Current GPA: "
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/lavender"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.0"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/lavender"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Courses"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3/6"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="2.5dp"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/form_input_background">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:background="@drawable/form_input_background">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Current CGPA: "
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/lavender"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.0"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/lavender"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Courses"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3/6"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/form_input_background"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginVertical="2.5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="current GPA"
-                        android:textColor="#fff"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/gpa_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4.0"
-                        android:textColor="#00ff00"
-                        android:textSize="30sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/rate_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate" />
-
-                    <ImageView
-                        android:id="@+id/rate_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate2" />
-
-                    <ImageView
-                        android:id="@+id/rate_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate3" />
-
-                    <ImageView
-                        android:id="@+id/rate_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate4" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="2.5dp"
+                    android:background="@drawable/success_background">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:background="@drawable/form_input_background">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Highest Score: "
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.0"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="current CGPA"
-                        android:textColor="#fff"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/cgpa_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4.0"
-                        android:textColor="#00ff00"
-                        android:textSize="30sp" />
+                        android:text="Calculus I"
+                        android:textColor="@color/white"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="2.5dp"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fail_background">
 
-                    <ImageView
-                        android:id="@+id/cgpa_rate_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate" />
 
-                    <ImageView
-                        android:id="@+id/cgpa_rate_2"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate2" />
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:background="@drawable/form_input_background">
 
-                    <ImageView
-                        android:id="@+id/cgpa_rate_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate3" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lowest Score: "
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/white"/>
 
-                    <ImageView
-                        android:id="@+id/cgpa_rate_4"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.0"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/white"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/star_rate4" />
+                        android:text="Physics"
+                        android:textColor="@color/white"/>
 
                 </LinearLayout>
 
             </LinearLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>
@@ -249,7 +405,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginVertical="10dp"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -329,7 +485,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="@color/white"
-                                    android:text="Course Name"/>
+                                    android:text="Course Code"/>
 
                             </RelativeLayout>
                             <RelativeLayout
