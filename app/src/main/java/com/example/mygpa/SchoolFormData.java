@@ -1,11 +1,19 @@
 package com.example.mygpa;
 
-public class SchoolFormData {
-    private String schoolName,program,startDate,endDate;
-    private int numberOfSemesters;
-    private float gpaScale; // Use float to store GPA scale (e.g., 4.0 or 5.0)
+import com.google.firebase.database.IgnoreExtraProperties;
 
-    public SchoolFormData(String schoolName, String program, String startDate, String endDate, int numberOfSemesters, float gpaScale) {
+@IgnoreExtraProperties
+public class SchoolFormData {
+    private String schoolName, program, startDate, endDate;
+    private String numberOfSemesters;
+    private String gpaScale; // Use float to store GPA scale (e.g., 4.0 or 5.0)
+
+    // Default (no-argument) constructor
+    public SchoolFormData() {
+        // Default constructor with no arguments
+    }
+
+    public SchoolFormData(String schoolName, String program, String startDate, String endDate, String numberOfSemesters, String gpaScale) {
         this.schoolName = schoolName;
         this.program = program;
         this.startDate = startDate;
@@ -47,19 +55,19 @@ public class SchoolFormData {
         this.endDate = endDate;
     }
 
-    public int getNumberOfSemesters() {
+    public String getNumberOfSemesters() {
         return numberOfSemesters;
     }
 
-    public void setNumberOfSemesters(int numberOfSemesters) {
+    public void setNumberOfSemesters(String numberOfSemesters) {
         this.numberOfSemesters = numberOfSemesters;
     }
 
-    public float getGpaScale() {
+    public String getGpaScale() {
         return gpaScale;
     }
 
-    public void setGpaScale(float gpaScale) {
+    public void setGpaScale(String gpaScale) {
         this.gpaScale = gpaScale;
     }
 }

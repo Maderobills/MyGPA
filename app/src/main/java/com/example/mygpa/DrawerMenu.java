@@ -64,7 +64,7 @@ public class DrawerMenu extends AppCompatActivity {
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
-        mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child(uid).child("Class Year");
+        mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child("Class Year").child(uid);
 
 
         if (savedInstanceState == null){
@@ -212,11 +212,11 @@ public class DrawerMenu extends AppCompatActivity {
                 }
 
 
-                int numSem = Integer.parseInt(semNumber);
-                float scaleP = Float.parseFloat(selectedGpaScale);
+                //int numSem = Integer.parseInt(semNumber);
+                //float scaleP = Float.parseFloat(selectedGpaScale);
 
 
-                SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, numSem, scaleP);
+                SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
 
                 String id = mSchoolData.push().getKey();
                 mSchoolData.child(id).setValue(data);

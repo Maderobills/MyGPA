@@ -19,27 +19,52 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="University/College"
+                android:textColor="#000"
+                android:textSize="12dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:id="@+id/School_text"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="DOMINION UNIVERSITY COLLEGE"
+                android:maxLines="1"
                 android:textColor="@color/lavender"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textStyle="bold"
-                android:id="@+id/School_name"/>
+                android:id="@+id/School_name"
+                android:layout_below="@+id/School_text"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Programme"
-                android:textColor="@color/black"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textStyle="bold"
-                android:layout_below="@+id/School_name"
-                android:id="@+id/type_txt_income"
-                android:maxLines="1"/>
+                android:orientation="horizontal"
+                android:layout_below="@+id/School_name">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programme "
+                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:id="@+id/programme_text"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Programme"
+                    android:textColor="@color/lavender"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:id="@+id/type_txt_income"
+                    android:maxLines="1"/>
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -47,30 +72,72 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
 
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="5dp"
+                android:id="@+id/leftlin"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Scale"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textStyle="bold"
-                android:id="@+id/scale_type"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Semesters"
-                android:textColor="@color/black"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textStyle="bold"
-                android:layout_below="@+id/scale_type"
-                android:id="@+id/sem_number"
-                android:maxLines="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GPA scale"
+                    android:textColor="@color/black"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:layout_below="@+id/scale_type"
+                    android:id="@+id/scale_text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.0"
+                    android:maxLines="1"
+                    android:textColor="@color/lavender"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/scale_type"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/leftlin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No.semesters"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:id="@+id/sem_text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6"
+                    android:textSize="20dp"
+
+                    android:textColor="@color/lavender"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textStyle="bold"
+                    android:id="@+id/sem_number"/>
+
+            </LinearLayout>
+
+
         </RelativeLayout>
 
     </LinearLayout>
