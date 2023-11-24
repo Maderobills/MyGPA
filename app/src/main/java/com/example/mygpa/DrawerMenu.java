@@ -49,7 +49,7 @@ public class DrawerMenu extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mSchoolData;
+    private DatabaseReference mSchoolData,mCoursesData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,7 @@ public class DrawerMenu extends AppCompatActivity {
         String uid = mUser.getUid();
 
         mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child("Class Year").child(uid);
-
+        mCoursesData = mSchoolData.child("Courses");
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DashboardHome()).commit();
@@ -277,29 +277,26 @@ public class DrawerMenu extends AppCompatActivity {
                     schoolSelect.setError("Enter Name of School");
                     return;
                 }
-                /*
-                if (TextUtils.isEmpty(programme)){
-                    programmeName.setError("Specify Program of Study");
+
+                if (TextUtils.isEmpty(selectProgramme)){
+                    programmeSelect.setError("Specify Program of Study");
                     return;
                 }
-                if (TextUtils.isEmpty(dateStart)){
-                    startDate.setError("Specify Start Date");
-                    return;
+                if (TextUtils.isEmpty(dateAcademic)){
+                    academicDate.setError("Specify Start Date");
                 }
 
 
-                //int numSem = Integer.parseInt(semNumber);
-                //float scaleP = Float.parseFloat(selectedGpaScale);
 
 
-                SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
+                CoursesFormData data = new CoursesFormData(selectSchool, selectProgramme, dateAcademic, numSemester, coursesNum);
 
-                String id = mSchoolData.push().getKey();
-                mSchoolData.child(id).setValue(data);
+                String id = mCoursesData.push().getKey();
+                mCoursesData.child(id).setValue(data);
 
                 Toast.makeText(DrawerMenu.this, "School Data Added", Toast.LENGTH_SHORT).show();
 
-                dialog.dismiss();*/
+                dialog.dismiss();
 
            }
         });
