@@ -7,6 +7,7 @@ public class SchoolFormData {
     private String schoolName, program, startDate, endDate;
     private String numberOfSemesters;
     private String gpaScale; // Use float to store GPA scale (e.g., 4.0 or 5.0)
+    private boolean visibility;
 
     // Default (no-argument) constructor
     public SchoolFormData() {
@@ -20,6 +21,7 @@ public class SchoolFormData {
         this.endDate = endDate;
         this.numberOfSemesters = numberOfSemesters;
         this.gpaScale = gpaScale;
+        this.visibility = false;
     }
 
     // Getters and setters for the fields
@@ -69,5 +71,13 @@ public class SchoolFormData {
 
     public void setGpaScale(String gpaScale) {
         this.gpaScale = gpaScale;
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }

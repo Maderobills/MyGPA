@@ -65,7 +65,7 @@ public class DrawerMenu extends AppCompatActivity {
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
-        mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child("Class Year").child(uid);
+        mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child(uid);
         mCoursesData = mSchoolData.child("Courses");
 
         if (savedInstanceState == null){

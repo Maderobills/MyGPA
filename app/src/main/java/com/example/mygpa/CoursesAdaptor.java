@@ -27,8 +27,9 @@ public class CoursesAdaptor extends RecyclerView.Adapter<CoursesAdaptor.CoursesV
     @Override
     public void onBindViewHolder(@NonNull CoursesViewHolder holder, int position) {
         CoursesFormData coursesData = coursesDataList.get(position);
-        holder.schoolName.setText(coursesData.getSchoolName());
-        holder.program.setText(coursesData.getProgramName());
+        holder.semNumber.setText(coursesData.getSemester());
+        holder.courseName.setText(coursesData.getProgramName());
+
 
     }
 
@@ -45,18 +46,17 @@ public class CoursesAdaptor extends RecyclerView.Adapter<CoursesAdaptor.CoursesV
     public class CoursesViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
 
-        TextView schoolName;
-        TextView program;
-        TextView scale;
-        TextView semesters;
+        TextView semNumber;
+        TextView courseName;
+        TextView courseScore;
+
 
         public CoursesViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.recycler_id_schools);
-            schoolName = itemView.findViewById(R.id.School_name);
-            program = itemView.findViewById(R.id.type_txt_income);
-            scale = itemView.findViewById(R.id.scale_type);
-            semesters = itemView.findViewById(R.id.sem_number);
+            cardView = itemView.findViewById(R.id.recycler_id_courses);
+            semNumber = itemView.findViewById(R.id.numberOfSemester);
+            courseName = itemView.findViewById(R.id.nameOfCourse);
+            courseScore = itemView.findViewById(R.id.scoreOfCourse);
         }
     }
 }

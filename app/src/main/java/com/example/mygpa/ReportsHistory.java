@@ -31,6 +31,7 @@ public class ReportsHistory extends Fragment {
 
     private FirebaseAuth mAuth;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_reports_history, container, false);
@@ -58,7 +59,6 @@ public class ReportsHistory extends Fragment {
             String uid = mUser.getUid();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                     .child("Schools")
-                    .child("Class Year") // Corrected path to the ClassYear
                     .child(uid);
 
             reference.addValueEventListener(new ValueEventListener() {
@@ -82,4 +82,5 @@ public class ReportsHistory extends Fragment {
             });
         }
     }
+
 }

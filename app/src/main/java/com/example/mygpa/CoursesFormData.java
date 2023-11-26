@@ -7,6 +7,9 @@ public class CoursesFormData {
     private String semester;
     private int numberOfCourses;
 
+
+
+
     // Constructor
     public CoursesFormData(String schoolName, String programName, String academicYear, String semester, String numberOfCourses) {
         this.schoolName = schoolName;
@@ -14,6 +17,7 @@ public class CoursesFormData {
         this.academicYear = academicYear;
         this.semester = semester;
         this.numberOfCourses = Integer.parseInt(numberOfCourses);
+
     }
 
     // Getters and setters for each field
@@ -56,4 +60,8 @@ public class CoursesFormData {
     public void setNumberOfCourses(int numberOfCourses) {
         this.numberOfCourses = numberOfCourses;
     }
+
+
 }
+
+

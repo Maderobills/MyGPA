@@ -1,145 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="5dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="5dp"
     android:elevation="5dp"
     android:padding="10dp"
-    app:cardCornerRadius="10dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        android:background="@color/white">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="University/College"
-                android:textColor="#000"
-                android:textSize="12dp"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:id="@+id/School_text"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DOMINION UNIVERSITY COLLEGE"
-                android:maxLines="1"
-                android:textColor="@color/lavender"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textStyle="bold"
-                android:id="@+id/School_name"
-                android:layout_below="@+id/School_text"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/School_name">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Programme "
-                    android:textSize="12dp"
-                    android:textColor="@color/black"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:id="@+id/programme_text"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Programme"
-                    android:textColor="@color/lavender"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textStyle="bold"
-                    android:id="@+id/type_txt_income"
-                    android:maxLines="1"/>
-            </LinearLayout>
-
-        </RelativeLayout>
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
 
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="5dp"
-                android:id="@+id/leftlin"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GPA scale"
-                    android:textColor="@color/black"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textStyle="bold"
-                    android:textSize="10dp"
-                    android:layout_below="@+id/scale_type"
-                    android:id="@+id/scale_text" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.0"
-                    android:maxLines="1"
-                    android:textColor="@color/lavender"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:id="@+id/scale_type"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="5dp"
-                android:gravity="center"
-                android:layout_toRightOf="@+id/leftlin">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No.semesters"
-                    android:textSize="10dp"
-                    android:textColor="@color/black"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textStyle="bold"
-                    android:id="@+id/sem_text" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6"
-                    android:textSize="20dp"
-
-                    android:textColor="@color/lavender"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textStyle="bold"
-                    android:id="@+id/sem_number"/>
-
-            </LinearLayout>
+       <LinearLayout
+           android:id="@+id/school_layout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
 
 
-        </RelativeLayout>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/white"
+
+                  android:orientation="horizontal">
+
+                  <RelativeLayout
+                      android:id="@+id/rel_layout"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="2"
+                      android:padding="5dp">
+
+                      <TextView
+                          android:id="@+id/School_text"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="University/College"
+                          android:textAppearance="?android:textAppearanceSmall"
+                          android:textColor="#000"
+                          android:textSize="12dp"/>
+
+                      <TextView
+                          android:id="@+id/School_name"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@+id/School_text"
+                          android:maxLines="1"
+                          android:text="DOMINION UNIVERSITY COLLEGE"
+                          android:textAppearance="?android:textAppearanceSmall"
+                          android:textColor="@color/lavender"
+                          android:textStyle="bold"/>
+
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="2"
+                      android:gravity="center_horizontal"
+                      android:padding="5dp">
+
+
+                      <LinearLayout
+                          android:id="@+id/leftlin"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="5dp"
+                          android:gravity="center"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:id="@+id/scale_text"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_below="@+id/scale_type"
+                              android:text="GPA scale"
+                              android:textAppearance="?android:textAppearanceSmall"
+                              android:textColor="@color/black"
+                              android:textSize="10dp"
+                              android:textStyle="bold" />
+                          <TextView
+                              android:id="@+id/scale_type"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:maxLines="1"
+                              android:text="4.0"
+                              android:textAppearance="?android:textAppearanceSmall"
+                              android:textColor="@color/lavender"
+                              android:textSize="20dp"
+                              android:textStyle="bold"/>
+
+                      </LinearLayout>
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="5dp"
+
+                          android:layout_toRightOf="@+id/leftlin"
+                          android:gravity="center"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:id="@+id/sem_text"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="No.semesters"
+                              android:textAppearance="?android:textAppearanceSmall"
+                              android:textColor="@color/black"
+                              android:textSize="10dp"
+                              android:textStyle="bold" />
+                          <TextView
+                              android:id="@+id/sem_number"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="6"
+
+                              android:textAppearance="?android:textAppearanceSmall"
+                              android:textColor="@color/lavender"
+                              android:textSize="20dp"
+                              android:textStyle="bold"/>
+
+                      </LinearLayout>
+
+
+                  </RelativeLayout>
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/white"
+                  android:orientation="horizontal"
+                  android:padding="5dp">
+
+                  <TextView
+                      android:id="@+id/programme_text"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Programme "
+                      android:textAppearance="?android:textAppearanceSmall"
+                      android:textColor="@color/black"
+                      android:textSize="12dp"/>
+                  <TextView
+                      android:id="@+id/type_txt_income"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:text="Programme"
+                      android:textAppearance="?android:textAppearanceSmall"
+                      android:textColor="@color/lavender"
+                      android:textStyle="bold"/>
+              </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/coursesView"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="5dp"
+               android:visibility="gone"
+               android:orientation="vertical"
+               android:background="@color/white">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Courses"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/lavender"
+                       android:layout_weight="1"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Score"
+                       android:textAlignment="viewEnd"
+                       android:layout_marginRight="10dp"
+                       android:textColor="@color/lavender"
+                       android:layout_weight="1"/>
+               </LinearLayout>
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:padding="10dp"
+                   android:background="@drawable/form_input_background"
+                   android:id="@+id/recycler_id_courses">
+
+               </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+
+           </LinearLayout>
 
     </LinearLayout>
+
+
+
+
 
 </androidx.cardview.widget.CardView>
