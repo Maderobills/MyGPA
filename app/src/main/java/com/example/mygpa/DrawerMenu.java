@@ -14,11 +14,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,11 +38,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class DrawerMenu extends AppCompatActivity {
     FloatingActionButton fab;
@@ -48,8 +54,9 @@ public class DrawerMenu extends AppCompatActivity {
     NavigationView navigationView;
     BottomNavigationView bottomNavigationView;
 
+
     private FirebaseAuth mAuth;
-    private DatabaseReference mSchoolData,mCoursesData;
+    private DatabaseReference mSchoolData,mSemesterData,mCoursesData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +73,8 @@ public class DrawerMenu extends AppCompatActivity {
         String uid = mUser.getUid();
 
         mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child(uid);
-        mCoursesData = mSchoolData.child("Courses");
+        mSemesterData = mSchoolData.child("Semester");
+        mCoursesData = mSemesterData.child("Courses");
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DashboardHome()).commit();
@@ -123,7 +131,6 @@ public class DrawerMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AddCoursePopup();
             }
         });
         shortsLayout.setOnClickListener(new View.OnClickListener() {
@@ -150,29 +157,43 @@ public class DrawerMenu extends AppCompatActivity {
         setupDialogAppearance(dialog);
     }
 
-    private void AddRecordPopup() {
+    private void AddRecordPopup(){
+
         // Create a new Dialog
         Dialog dialog = new Dialog(this);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Set the content view to your custom layout (addgparecord_popup)
         dialog.setContentView(R.layout.addgparecord_popup);
 
-        final EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
-        final EditText programmeName = dialog.findViewById(R.id.programEditText);
-        final EditText startDate = dialog.findViewById(R.id.startDateEditText);
-        final EditText endDate = dialog.findViewById(R.id.endDateEditText);
-        final EditText semNum = dialog.findViewById(R.id.semestersEditText);
-        final RadioGroup gpaRadioGroup = dialog.findViewById(R.id.gpaRadioGroup);
-        final RadioButton radio4_0 = dialog.findViewById(R.id.radio_4_0);
-        final RadioButton radio5_0 = dialog.findViewById(R.id.radio_5_0);
+        final  HorizontalScrollView horizontalScrollView = dialog.findViewById(R.id.horizontal_view);
+        final LinearLayout schoolInfoView = dialog.findViewById(R.id.School_Info);
+        final LinearLayout courseInfoView = dialog.findViewById(R.id.Course_Info);
 
-        // Find the "cancelButton" and set its click listener to dismiss the dialog
-        Button closeButton = dialog.findViewById(R.id.cancelButton);
-        Button saveSchoolButton = dialog.findViewById(R.id.addButton);
+        Button nextButton = dialog.findViewById(R.id.nextScrollButton);
+        Button previousButton = dialog.findViewById(R.id.backScrollButton);
+        Button cancelButton = dialog.findViewById(R.id.cancelButton);
+        Button addRecordButton = dialog.findViewById(R.id.addButton);
 
-        saveSchoolButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AddSchoolPopup();
+                AddCoursePopup();
+                // Scroll to the Course Info section
+                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+                courseInfoView.showContextMenu();
+            }
+            private void AddSchoolPopup() {
+
+                final EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
+                final EditText programmeName = dialog.findViewById(R.id.programEditText);
+                final EditText startDate = dialog.findViewById(R.id.startDateEditText);
+                final EditText endDate = dialog.findViewById(R.id.endDateEditText);
+                final EditText semNum = dialog.findViewById(R.id.semestersEditText);
+                final RadioGroup gpaRadioGroup = dialog.findViewById(R.id.gpaRadioGroup);
+                final RadioButton radio4_0 = dialog.findViewById(R.id.radio_4_0);
+                final RadioButton radio5_0 = dialog.findViewById(R.id.radio_5_0);
 
                 String nameOfSchool = schoolName.getText().toString().trim();
                 String programme = programmeName.getText().toString().trim();
@@ -213,107 +234,91 @@ public class DrawerMenu extends AppCompatActivity {
                 }
 
 
-                //int numSem = Integer.parseInt(semNumber);
-                //float scaleP = Float.parseFloat(selectedGpaScale);
-
 
                 SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
+                //SemFormData datasem = new SemFormData(semesterNumer, dateStart, dateEnd);
+                //CourseFormData datacourse = new CourseFormData(courseCode, courseName, courseScore);
 
                 String id = mSchoolData.push().getKey();
-                mSchoolData.child(id).setValue(data);
-
-                Toast.makeText(DrawerMenu.this, "School Data Added", Toast.LENGTH_SHORT).show();
-
-                dialog.dismiss();
-
+                mSchoolData.child(id).setValue(data)
+                        .addOnSuccessListener(aVoid -> {
+                            // Data successfully saved
+                            Log.d("Firebase", "School Data Added Successfully!");
+                        })
+                        .addOnFailureListener(e -> {
+                            // Error occurred while saving data
+                            Log.e("Firebase", "Error saving data: " + e.getMessage());
+                        });
             }
-        });
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
 
-        // Call a method to set up the appearance and behavior of the dialog (if needed)
-        setupDialogAppearanceForm(dialog);
-
-        // Show the dialog
-        dialog.show();
-    }
-
-    private void AddCoursePopup() {
-        // Create a new Dialog
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // Set the content view to your custom layout (AddCourse_popup)
-        dialog.setContentView(R.layout.addcourses_popup);
-
-        final EditText schoolSelect = dialog.findViewById(R.id.schoolNameSelectText);
-        final EditText programmeSelect = dialog.findViewById(R.id.programSelectText);
-        final EditText academicDate = dialog.findViewById(R.id.academicYearText);
-        final EditText semesterNum = dialog.findViewById(R.id.semestersNumText);
-        final EditText numCourses = dialog.findViewById(R.id.numberOfCoursesText);
-        final ImageButton releaseList = dialog.findViewById(R.id.loadInputButton);
+            private void AddCoursePopup() {
 
 
-        // Find the "cancelButton" and set its click listener to dismiss the dialog
-        Button closeButton = dialog.findViewById(R.id.cancelButton2);
-        Button saveCoursesButton = dialog.findViewById(R.id.addButton2);
+                final TextView semHeading = dialog.findViewById(R.id.semHead);
+                final EditText courseName_1 = dialog.findViewById(R.id.course_name_1);
+                final EditText courseCode_1 = dialog.findViewById(R.id.course_code_1);
+                final EditText courseScore_1 = dialog.findViewById(R.id.course_score_1);
 
-        saveCoursesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String selectSchool = schoolSelect.getText().toString().trim();
-                String selectProgramme = programmeSelect.getText().toString().trim();
-                String dateAcademic = academicDate.getText().toString().trim();
-                String numSemester = semesterNum.getText().toString().trim();
-                String coursesNum = numCourses.getText().toString().trim();
+                String headingSem = semHeading.getText().toString().trim();
+                String nameCourse_1 = courseName_1.getText().toString().trim();
+                String codeCourse_1 = courseCode_1.getText().toString().trim();
+                String scoreCourse_1 = courseScore_1.getText().toString().trim();
 
 
 
-                if (TextUtils.isEmpty(selectSchool)){
-                    schoolSelect.setError("Enter Name of School");
+                if (TextUtils.isEmpty(headingSem)){
+                    semHeading.setError("Enter Semester Number");
                     return;
                 }
-
-                if (TextUtils.isEmpty(selectProgramme)){
-                    programmeSelect.setError("Specify Program of Study");
+                if (TextUtils.isEmpty(nameCourse_1)){
+                    courseName_1.setError("Enter Course Title");
                     return;
                 }
-                if (TextUtils.isEmpty(dateAcademic)){
-                    academicDate.setError("Specify Start Date");
+                if (TextUtils.isEmpty(codeCourse_1)){
+                    courseCode_1.setError("Enter Course Code");
+                    return;
                 }
+        /*if (TextUtils.isEmpty(scoreCourse_1)){
+            courseScore_1.setError("Specify End Date");
+            return;
+        }*/
 
+                SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1);
 
-
-
-                CoursesFormData data = new CoursesFormData(selectSchool, selectProgramme, dateAcademic, numSemester, coursesNum);
-
+                // Save the course data under the current school in Firebase
                 String id = mCoursesData.push().getKey();
-                mCoursesData.child(id).setValue(data);
+                mSchoolData.child(id).setValue(dataSemCourse);
 
-                Toast.makeText(DrawerMenu.this, "School Data Added", Toast.LENGTH_SHORT).show();
+                //TOASTERS
+                Toast.makeText(DrawerMenu.this, "Course Data Added", Toast.LENGTH_SHORT).show();
 
-                dialog.dismiss();
-
-           }
+            }
         });
-        closeButton.setOnClickListener(new View.OnClickListener() {
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Scroll to the School Info section
+                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
+                schoolInfoView.showContextMenu();
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-
-        // Call a method to set up the appearance and behavior of the dialog (if needed)
-        setupDialogAppearanceForm(dialog);
-
+        addRecordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TOASTERS
+                Toast.makeText(DrawerMenu.this, "Record Data Added", Toast.LENGTH_SHORT).show();
+            }
+        });
         // Show the dialog
         dialog.show();
-    }
 
+    }
 
     private void showToast(String message) {
         Toast.makeText(DrawerMenu.this, message, Toast.LENGTH_SHORT).show();

@@ -2,6 +2,8 @@ package com.example.mygpa;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.List;
+
 @IgnoreExtraProperties
 public class SchoolFormData {
     private String schoolName, program, startDate, endDate;

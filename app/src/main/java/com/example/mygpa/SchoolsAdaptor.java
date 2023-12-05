@@ -5,15 +5,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolder> {
     private List<SchoolFormData> schoolsDataList;
     private Context contextSchool;
+    private FirebaseAuth mAuth;
+
+
 
     public SchoolsAdaptor(ArrayList<SchoolFormData> schoolsDataList, Context contextSchool) {
         this.schoolsDataList = schoolsDataList;
@@ -37,6 +51,7 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
 
         boolean isVisible = schoolData.isVisibility();
         holder.courseView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
@@ -67,6 +82,8 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
             scale = itemView.findViewById(R.id.scale_type);
             semesters = itemView.findViewById(R.id.sem_number);
             courseView = itemView.findViewById(R.id.coursesView);
+
+
 
             schoolLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

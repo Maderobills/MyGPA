@@ -3,7 +3,6 @@ package com.example.mygpa;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,9 +24,11 @@ import java.util.ArrayList;
 
 public class ReportsHistory extends Fragment {
 
-    RecyclerView schoolRecycler;
+    RecyclerView schoolRecycler, coursesRecycler;
     SchoolsAdaptor adapterSchools;
+
     ArrayList<SchoolFormData> schoolList;
+
 
     private FirebaseAuth mAuth;
 
@@ -49,12 +50,15 @@ public class ReportsHistory extends Fragment {
 
         readSchools();
 
+
         return myView;
     }
 
     private void readSchools() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
+
+
         if (mUser != null) {
             String uid = mUser.getUid();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
@@ -74,13 +78,18 @@ public class ReportsHistory extends Fragment {
                     adapterSchools.notifyDataSetChanged();
                 }
 
+
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     // Handle database error here, e.g., show an error message
                     Toast.makeText(getActivity(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
+
     }
+
 
 }

@@ -14,25 +14,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/numberOfSemester"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Semester: 1"
-            android:textAlignment="center"
-            android:textColor="@color/lavender"
-            android:layout_weight="1"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/codeOfCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="PHY001"
+                android:textColor="#FA0000" />
 
             <TextView
                 android:id="@+id/nameOfCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:text="Psychology"
                 android:textColor="#FA0000" />
 
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="82/100"
+                android:text="82"
                 android:textAlignment="viewEnd"
                 android:textColor="#FA0000" />
 
