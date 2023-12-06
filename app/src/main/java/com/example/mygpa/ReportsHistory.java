@@ -24,46 +24,30 @@ import java.util.ArrayList;
 
 public class ReportsHistory extends Fragment {
 
-    RecyclerView schoolRecycler, courseRecycler;
+    RecyclerView schoolRecycler,courseRecycler;
     SchoolsAdaptor adapterSchools;
     SemCoursesAdaptor adapterCourses;
 
-    ArrayList<SchoolFormData> schoolList;
-    ArrayList<SemCourseFormData> courseList;
-
+    ArrayList<SchoolFormData> schoolList = new ArrayList<>();
+    ArrayList<SemCourseFormData> courseList = new ArrayList<>();
 
     private FirebaseAuth mAuth;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_reports_history, container, false);
 
-
         schoolRecycler = myView.findViewById(R.id.recycler_id_schools);
-        courseRecycler = myView.findViewById(R.id.recycler_id_courses);
 
-        LinearLayoutManager layoutManagerSchool = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManagerSchool = new LinearLayoutManager(getContext());
         layoutManagerSchool.setReverseLayout(true);
         layoutManagerSchool.setStackFromEnd(true);
         schoolRecycler.setLayoutManager(layoutManagerSchool);
 
-        schoolList = new ArrayList<>();
-        adapterSchools = new SchoolsAdaptor(schoolList, getActivity());
+        adapterSchools = new SchoolsAdaptor(schoolList, getContext());
         schoolRecycler.setAdapter(adapterSchools);
 
-        LinearLayoutManager layoutManagerCourse = new LinearLayoutManager(getActivity());
-        layoutManagerCourse.setReverseLayout(true);
-        layoutManagerCourse.setStackFromEnd(true);
-        courseRecycler.setLayoutManager(layoutManagerCourse);
-
-        courseList = new ArrayList<>();
-        adapterCourses = new SemCoursesAdaptor(getActivity(), courseList);
-        courseRecycler.setAdapter(adapterCourses);
-
         readSchools();
-        readCourses();
-
 
         return myView;
     }
@@ -74,19 +58,19 @@ public class ReportsHistory extends Fragment {
         if (mUser != null) {
             String uid = mUser.getUid();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                    .child("Students").child(uid);
+                    .child("Students").child(uid).child("Schools");
 
-            reference.addValueEventListener(new ValueEventListener() {
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     schoolList.clear();
 
-                    // Iterate through each school under the student
-                    for (DataSnapshot schoolSnapshot : snapshot.child("Schools").getChildren()) {
-                        String schoolId = schoolSnapshot.getKey();
+                    for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
                         SchoolFormData schoolsData = schoolSnapshot.getValue(SchoolFormData.class);
-                        // Assuming SchoolFormData contains getters and setters for school data
-                        schoolList.add(schoolsData);
+                        if (schoolsData != null) {
+                            schoolList.add(schoolsData);
+                            readCourses(schoolSnapshot.getKey());
+                        }
                     }
 
                     adapterSchools.notifyDataSetChanged();
@@ -94,48 +78,51 @@ public class ReportsHistory extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle database error
-                    Toast.makeText(getActivity(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
-    private void readCourses() {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-        if (mUser != null) {
-            String uid = mUser.getUid();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                    .child("Students").child(uid);
+    private void readCourses(String schoolId) {
+        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
+                .child("Students").child(mAuth.getUid()).child("Courses");
 
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    courseList.clear();
+        coursesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courseList.clear();
 
-                    // Iterate through each course under the student
-                    for (DataSnapshot courseSnapshot : snapshot.child("Courses").getChildren()) {
-                        String courseId = courseSnapshot.getKey(); // Assuming courseId identifies the course uniquely
-                        SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
-                        if (courseData != null) {
-                            courseList.add(courseData);
-                        }
+                for (DataSnapshot courseSnapshot : snapshot.getChildren()) {
+                    String courseId = courseSnapshot.getKey();
+                    SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                    if (courseData != null) {
+                        courseList.add(courseData);
                     }
-
-                    adapterCourses.notifyDataSetChanged();
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle database error
-                    Toast.makeText(getActivity(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+                courseRecycler = schoolRecycler.findViewById(R.id.recycler_id_courses);
+
+                LinearLayoutManager layoutManagerCourse = new LinearLayoutManager(getContext());
+                layoutManagerCourse.setReverseLayout(true);
+                layoutManagerCourse.setStackFromEnd(true);
+
+                // Initialize adapterCourses here
+                adapterCourses = new SemCoursesAdaptor(getContext(), courseList);
+                courseRecycler.setLayoutManager(layoutManagerCourse);
+
+                // Set the adapter to the RecyclerView
+                courseRecycler.setAdapter(adapterCourses);
+
+                // Notify the adapter for changes
+                adapterCourses.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-
-
-
 }
+
