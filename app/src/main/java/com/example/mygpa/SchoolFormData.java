@@ -2,6 +2,7 @@ package com.example.mygpa;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @IgnoreExtraProperties
@@ -82,4 +83,5 @@ public class SchoolFormData {
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
+
 }

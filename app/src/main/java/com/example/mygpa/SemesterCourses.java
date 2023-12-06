@@ -34,8 +34,9 @@ public class SemesterCourses extends Fragment {
     private ListView coursesList;
     private EditText courseName;
     private Button add_course;
-    private ArrayList<String> arrayList = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
+    SemCoursesAdaptor adapterCourses;
+    ArrayList<SemCourseFormData> courseList;
+    RecyclerView courseRecycler;
 
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
@@ -43,9 +44,59 @@ public class SemesterCourses extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View myView = inflater.inflate(R.layout.courses_recycler_data, container, false);
+        View myView = inflater.inflate(R.layout.schools_recycler_data, container, false);
+
+        courseRecycler = myView.findViewById(R.id.recycler_id_courses);
+
+        LinearLayoutManager layoutManagerCourse = new LinearLayoutManager(getActivity());
+        layoutManagerCourse.setReverseLayout(true);
+        layoutManagerCourse.setStackFromEnd(true);
+        courseRecycler.setLayoutManager(layoutManagerCourse);
+
+        courseList = new ArrayList<>();
+        adapterCourses = new SemCoursesAdaptor(getActivity(), courseList);
+        courseRecycler.setAdapter(adapterCourses);
+
+        readCourses();
 
 
         return myView;
     }
+
+
+
+    private void readCourses() {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        if (mUser != null) {
+            String uid = mUser.getUid();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                    .child("Students").child(uid);
+
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    courseList.clear();
+
+                    // Iterate through each course under the student
+                    for (DataSnapshot courseSnapshot : snapshot.child("Courses").getChildren()) {
+                        String courseId = courseSnapshot.getKey(); // Assuming courseId identifies the course uniquely
+                        SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                        if (courseData != null) {
+                            courseList.add(courseData);
+                        }
+                    }
+
+                    adapterCourses.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle database error
+                    Toast.makeText(getActivity(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 }

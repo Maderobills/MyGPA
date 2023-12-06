@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -23,11 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -38,14 +31,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 public class DrawerMenu extends AppCompatActivity {
@@ -71,10 +59,6 @@ public class DrawerMenu extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
-
-        mSchoolData = FirebaseDatabase.getInstance().getReference().child("Schools").child(uid);
-        mSemesterData = mSchoolData.child("Semester");
-        mCoursesData = mSemesterData.child("Courses");
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DashboardHome()).commit();
@@ -175,16 +159,9 @@ public class DrawerMenu extends AppCompatActivity {
         Button cancelButton = dialog.findViewById(R.id.cancelButton);
         Button addRecordButton = dialog.findViewById(R.id.addButton);
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddSchoolPopup();
-                AddCoursePopup();
-                // Scroll to the Course Info section
-                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-                courseInfoView.showContextMenu();
-            }
-            private void AddSchoolPopup() {
+        // Define a local inner class
+        class recAddClass {
+            private SchoolFormData AddSchoolPopup() {
 
                 final EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
                 final EditText programmeName = dialog.findViewById(R.id.programEditText);
@@ -205,21 +182,21 @@ public class DrawerMenu extends AppCompatActivity {
                 String scale5 = radio5_0.getText().toString().trim();
 
 
-                if (TextUtils.isEmpty(nameOfSchool)){
+                if (TextUtils.isEmpty(nameOfSchool)) {
                     schoolName.setError("Enter Name of School");
-                    return;
+                    return null;
                 }
-                if (TextUtils.isEmpty(programme)){
+                if (TextUtils.isEmpty(programme)) {
                     programmeName.setError("Specify Program of Study");
-                    return;
+                    return null;
                 }
-                if (TextUtils.isEmpty(dateStart)){
+                if (TextUtils.isEmpty(dateStart)) {
                     startDate.setError("Specify Start Date");
-                    return;
+                    return null;
                 }
-                if (TextUtils.isEmpty(dateEnd)){
+                if (TextUtils.isEmpty(dateEnd)) {
                     endDate.setError("Specify End Date");
-                    return;
+                    return null;
                 }
 
                 String selectedGpaScale = "";
@@ -230,28 +207,20 @@ public class DrawerMenu extends AppCompatActivity {
                     selectedGpaScale = "5.0";
                 } else {
                     Toast.makeText(DrawerMenu.this, "Select GPA scale", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-
-
+                scrL();
 
                 SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
-                //SemFormData datasem = new SemFormData(semesterNumer, dateStart, dateEnd);
-                //CourseFormData datacourse = new CourseFormData(courseCode, courseName, courseScore);
-
-                String id = mSchoolData.push().getKey();
-                mSchoolData.child(id).setValue(data)
-                        .addOnSuccessListener(aVoid -> {
-                            // Data successfully saved
-                            Log.d("Firebase", "School Data Added Successfully!");
-                        })
-                        .addOnFailureListener(e -> {
-                            // Error occurred while saving data
-                            Log.e("Firebase", "Error saving data: " + e.getMessage());
-                        });
+                return data;
             }
 
-            private void AddCoursePopup() {
+            private void scrL() {
+                // Scroll to the Course Info section
+                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+                courseInfoView.showContextMenu();
+            }
+
+            private SemCourseFormData AddCoursePopup() {
 
 
                 final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -265,18 +234,17 @@ public class DrawerMenu extends AppCompatActivity {
                 String scoreCourse_1 = courseScore_1.getText().toString().trim();
 
 
-
-                if (TextUtils.isEmpty(headingSem)){
+                if (TextUtils.isEmpty(headingSem)) {
                     semHeading.setError("Enter Semester Number");
-                    return;
+                    return null;
                 }
-                if (TextUtils.isEmpty(nameCourse_1)){
+                if (TextUtils.isEmpty(nameCourse_1)) {
                     courseName_1.setError("Enter Course Title");
-                    return;
+                    return null;
                 }
-                if (TextUtils.isEmpty(codeCourse_1)){
+                if (TextUtils.isEmpty(codeCourse_1)) {
                     courseCode_1.setError("Enter Course Code");
-                    return;
+                    return null;
                 }
         /*if (TextUtils.isEmpty(scoreCourse_1)){
             courseScore_1.setError("Specify End Date");
@@ -284,15 +252,58 @@ public class DrawerMenu extends AppCompatActivity {
         }*/
 
                 SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1);
-
-                // Save the course data under the current school in Firebase
-                String id = mCoursesData.push().getKey();
-                mSchoolData.child(id).setValue(dataSemCourse);
-
-                //TOASTERS
-                Toast.makeText(DrawerMenu.this, "Course Data Added", Toast.LENGTH_SHORT).show();
+                return dataSemCourse;
 
             }
+
+            private void pushData() {
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser mUser = mAuth.getCurrentUser();
+                String uid = mUser.getUid();
+
+                EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
+                String nameOfSchool = schoolName.getText().toString().trim();
+
+                TextView semHeading = dialog.findViewById(R.id.semHead);
+                String headingSem = semHeading.getText().toString().trim();
+
+                EditText programmeName = dialog.findViewById(R.id.programEditText);
+                String programme = programmeName.getText().toString().trim();
+
+                EditText courseName_1 = dialog.findViewById(R.id.course_name_1);
+                String nameCourse_1 = courseName_1.getText().toString().trim();
+
+                DatabaseReference mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
+                mSchoolData = mStudentData.child("Schools").push(); // Generate a unique school ID
+                mCoursesData = mStudentData.child("Courses").push(); // Generate a unique semester ID
+
+                // Pushing school data
+                mSchoolData.setValue(AddSchoolPopup());
+//.child(programme).child(headingSem).child(nameCourse_1)
+                // Pushing course data
+                mCoursesData.setValue(AddCoursePopup())
+                        .addOnSuccessListener(aVoid -> {
+                            // Data successfully saved
+                            Log.d("Firebase", "Courses Data Added Successfully!");
+                            dialog.dismiss();
+                        })
+                        .addOnFailureListener(e -> {
+                            // Error occurred while saving data
+                            Log.e("Firebase", "Error saving data: " + e.getMessage());
+                        });
+            }
+        }
+
+
+            recAddClass inner = new recAddClass();
+
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inner.AddSchoolPopup();
+            }
+
         });
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,14 +322,19 @@ public class DrawerMenu extends AppCompatActivity {
         addRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inner.AddCoursePopup();
+                inner.pushData();
                 //TOASTERS
                 Toast.makeText(DrawerMenu.this, "Record Data Added", Toast.LENGTH_SHORT).show();
             }
         });
+
         // Show the dialog
         dialog.show();
 
     }
+
+
 
     private void showToast(String message) {
         Toast.makeText(DrawerMenu.this, message, Toast.LENGTH_SHORT).show();
