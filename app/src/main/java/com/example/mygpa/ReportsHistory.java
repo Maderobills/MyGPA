@@ -47,6 +47,14 @@ public class ReportsHistory extends Fragment {
         adapterSchools = new SchoolsAdaptor(schoolList, getContext());
         schoolRecycler.setAdapter(adapterSchools);
 
+        adapterCourses = new SemCoursesAdaptor(getContext(), courseList);
+        courseRecycler = myView.findViewById(R.id.recycler_id_courses);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        courseRecycler.setLayoutManager(layoutManager);
+        courseRecycler.setAdapter(adapterCourses);
+
         readSchools();
 
         return myView;
@@ -67,7 +75,7 @@ public class ReportsHistory extends Fragment {
                         SchoolFormData schoolsData = schoolSnapshot.getValue(SchoolFormData.class);
                         if (schoolsData != null) {
                             schoolList.add(schoolsData);
-                            readCourses();
+                            readCourses(schoolsData.getSchoolName());
                         }
                     }
 
@@ -82,41 +90,28 @@ public class ReportsHistory extends Fragment {
         }
     }
 
-    private void readCourses() {
+    private void readCourses(String keyS) {
         DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
                 .child("Students").child(mAuth.getUid()).child("Schools");
 
         coursesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courseList.clear();
+                // Clear the courseList before adding new data
+                for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
+                        // Retrieve courses only for the school with ID "DUC"
+                        for (DataSnapshot courseSnapshot : schoolSnapshot.child("Courses").getChildren()) {
+                            SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
 
-
-                for (DataSnapshot courseSnapshot : snapshot.getChildren()) {
-                    String courseId = "DUC";
-                    SemCourseFormData courseData = courseSnapshot.child("Courses").getValue(SemCourseFormData.class);
-                    courseList.clear();
-                    if (courseData != null) {
-                        courseList.add(courseData);
-                    }
+                            if (courseData != null) {
+                                courseList.add(courseData);
+                            }
+                        }
                 }
-
-                courseRecycler = schoolRecycler.findViewById(R.id.recycler_id_courses);
-
-                LinearLayoutManager layoutManagerCourse = new LinearLayoutManager(getContext());
-                layoutManagerCourse.setReverseLayout(true);
-                layoutManagerCourse.setStackFromEnd(true);
-
-                // Initialize adapterCourses here
-                adapterCourses = new SemCoursesAdaptor(getContext(), courseList);
-                courseRecycler.setLayoutManager(layoutManagerCourse);
-
-                // Set the adapter to the RecyclerView
-                courseRecycler.setAdapter(adapterCourses);
-
-                // Notify the adapter for changes
+                // Initialize and set adapter to the RecyclerView here
                 adapterCourses.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();

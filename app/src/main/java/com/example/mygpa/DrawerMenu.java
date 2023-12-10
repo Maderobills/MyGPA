@@ -275,7 +275,7 @@ public class DrawerMenu extends AppCompatActivity {
 
                 DatabaseReference mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
                 mSchoolData = mStudentData.child("Schools").child(nameOfSchool); // Generate a unique school ID
-                mCoursesData = mSchoolData.child("Courses"); // Generate a unique semester ID
+                mCoursesData = mSchoolData.child("Courses").child(nameOfSchool); // Generate a unique semester ID
 
                 // Pushing school data
                 mSchoolData.setValue(AddSchoolPopup());

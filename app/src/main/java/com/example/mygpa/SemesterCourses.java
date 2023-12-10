@@ -85,7 +85,7 @@ public class SemesterCourses extends Fragment {
         daE.setText(storedDateE);
 
 
-        readSchools();
+        readCourses(storedSchName);
 
 
         return myView;
@@ -97,33 +97,6 @@ public class SemesterCourses extends Fragment {
         storedNSem = nSem;
         storedDateS = dateS;
         storedDateE = dateE;
-    }
-
-    private void readSchools() {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-        if (mUser != null) {
-            String uid = mUser.getUid();
-            DatabaseReference schoolsReference = FirebaseDatabase.getInstance().getReference()
-                    .child("Students").child(uid).child("Schools");
-
-            schoolsReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
-                        String schName = schoolSnapshot.child("schoolName").getValue(String.class);
-                        if (schName != null) {
-                            readCourses(schName);
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
     }
 
     private void readCourses(String nameSch) {
@@ -139,7 +112,7 @@ public class SemesterCourses extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     courseList.clear();
                     for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                        SemCourseFormData courseData = courseSnapshot.child(nameSch).getValue(SemCourseFormData.class);
+                        SemCourseFormData courseData = courseSnapshot.child("Courses").child(nameSch).getValue(SemCourseFormData.class);
                         if (courseData != null) {
                             courseList.add(courseData);
                         }
@@ -154,4 +127,44 @@ public class SemesterCourses extends Fragment {
             });
         }
     }
+
+
+/*
+    private void readCourses(String nameSch) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        if (mUser != null) {
+            String uid = mUser.getUid();
+            DatabaseReference coursesReference = FirebaseDatabase.getInstance().getReference()
+                    .child("Students").child(uid).child("Schools");
+
+            coursesReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot schoolSnapshot : dataSnapshot.child(nameSch).getChildren()) {
+                        courseList.clear();
+                        if (nameSch.equals("DUC")) {
+                            // Retrieve courses only for the school with ID "DUC"
+                            for (DataSnapshot courseSnapshot : schoolSnapshot.getChildren()) {
+
+                                SemCourseFormData courseData = courseSnapshot.child("Courses").getValue(SemCourseFormData.class);
+                                if (courseData != null) {
+                                    courseList.add(courseData);
+                                }
+                            }
+                            break; // Break the loop once courses for "DUC" are retrieved
+                        }
+                    }
+                    adapterCourses.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+*/
 }
