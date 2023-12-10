@@ -59,17 +59,15 @@ public class ReportsHistory extends Fragment {
             String uid = mUser.getUid();
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                     .child("Students").child(uid).child("Schools");
-
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     schoolList.clear();
-
                     for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
                         SchoolFormData schoolsData = schoolSnapshot.getValue(SchoolFormData.class);
                         if (schoolsData != null) {
                             schoolList.add(schoolsData);
-                            readCourses(schoolSnapshot.getKey());
+                            /*readCourses(schoolSnapshot.getKey());*/
                         }
                     }
 
@@ -84,7 +82,7 @@ public class ReportsHistory extends Fragment {
         }
     }
 
-    private void readCourses(String schoolId) {
+    /*private void readCourses(String schoolId) {
         DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
                 .child("Students").child(mAuth.getUid()).child("Courses");
 
@@ -123,6 +121,6 @@ public class ReportsHistory extends Fragment {
                 Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 }
 

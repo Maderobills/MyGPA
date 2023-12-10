@@ -1,4 +1,5 @@
 package com.example.mygpa;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,8 +32,11 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
     private List<SchoolFormData> schoolsDataList;
     private Context contextSchool;
     private FirebaseAuth mAuth;
+    String schName, gpaSc, nSem, dateS, dateE, idNo;
 
-
+    SemCoursesAdaptor adapterCourses;
+    ArrayList<SemCourseFormData> courseList;
+    RecyclerView courseRecycler;
 
     public SchoolsAdaptor(ArrayList<SchoolFormData> schoolsDataList, Context contextSchool) {
         this.schoolsDataList = schoolsDataList;
@@ -50,8 +59,30 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
         holder.semesters.setText(schoolData.getNumberOfSemesters());
 
         boolean isVisible = schoolData.isVisibility();
-        holder.courseView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+//        holder.courseView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retrieve the school data for the clicked item
+                schName = schoolData.getSchoolName();
+                gpaSc = schoolData.getGpaScale();
+                nSem = schoolData.getNumberOfSemesters();
+                dateS = schoolData.getStartDate();
+                dateE = schoolData.getEndDate();
+
+                // Navigate to SemesterCourses fragment and pass the school data
+                FragmentManager fragmentManager = ((AppCompatActivity) contextSchool).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                SemesterCourses semesterCoursesFragment = new SemesterCourses();
+                semesterCoursesFragment.setSchoolData(schName, gpaSc, nSem, dateS, dateE);
+
+                fragmentTransaction.replace(R.id.frame_layout, semesterCoursesFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     @Override
@@ -65,34 +96,25 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
     }
 
     public class SchoolViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
 
         TextView schoolName;
         TextView program;
         TextView scale;
         TextView semesters;
-        LinearLayout schoolLayout,courseView;
+        LinearLayout schoolLayout;
 
         public SchoolViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.recycler_id_schools);
             schoolLayout = itemView.findViewById(R.id.school_layout);
             schoolName = itemView.findViewById(R.id.School_name);
             program = itemView.findViewById(R.id.type_txt_income);
             scale = itemView.findViewById(R.id.scale_type);
             semesters = itemView.findViewById(R.id.sem_number);
-            courseView = itemView.findViewById(R.id.coursesView);
 
-
-
-            schoolLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SchoolFormData schoolFormData = schoolsDataList.get(getAdapterPosition());
-                    schoolFormData.setVisibility(!schoolFormData.isVisibility());
-                    notifyItemChanged(getAdapterPosition());
-                }
-            });
         }
     }
+
+
 }
+
+
