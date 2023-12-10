@@ -154,6 +154,14 @@
                       android:textColor="@color/lavender"
                       android:textStyle="bold"/>
               </LinearLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:padding="10dp"
+               android:background="@drawable/form_input_background"
+               android:id="@+id/recycler_id_courses">
+
+           </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>

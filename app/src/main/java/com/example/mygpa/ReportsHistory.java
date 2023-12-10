@@ -67,7 +67,7 @@ public class ReportsHistory extends Fragment {
                         SchoolFormData schoolsData = schoolSnapshot.getValue(SchoolFormData.class);
                         if (schoolsData != null) {
                             schoolList.add(schoolsData);
-                            /*readCourses(schoolSnapshot.getKey());*/
+                            readCourses();
                         }
                     }
 
@@ -82,18 +82,19 @@ public class ReportsHistory extends Fragment {
         }
     }
 
-    /*private void readCourses(String schoolId) {
+    private void readCourses() {
         DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
-                .child("Students").child(mAuth.getUid()).child("Courses");
+                .child("Students").child(mAuth.getUid()).child("Schools");
 
-        coursesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        coursesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                courseList.clear();
+
 
                 for (DataSnapshot courseSnapshot : snapshot.getChildren()) {
-                    String courseId = courseSnapshot.getKey();
-                    SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                    String courseId = "DUC";
+                    SemCourseFormData courseData = courseSnapshot.child("Courses").getValue(SemCourseFormData.class);
+                    courseList.clear();
                     if (courseData != null) {
                         courseList.add(courseData);
                     }
@@ -121,6 +122,6 @@ public class ReportsHistory extends Fragment {
                 Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }*/
+    }
 }
 

@@ -274,27 +274,22 @@ public class DrawerMenu extends AppCompatActivity {
                 String nameCourse_1 = courseName_1.getText().toString().trim();
 
                 DatabaseReference mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
-                mSchoolData = mStudentData.child("Schools"); // Create a new unique school ID
-                // Get the key of the newly created school node
-                String schKey = mSchoolData.getKey();
-                // Pushing school data
-                mSchoolData.setValue(AddSchoolPopup())
-                        .addOnSuccessListener(aVoid -> {
-                            Log.d("Firebase", "School Data Added Successfully!");
-                            // Now, within the success listener of adding the school data, add the course data under that school
-                            mCoursesData = mStudentData.child("Schools").child("Courses"); // Generate a unique course ID
-                            mCoursesData.setValue(AddCoursePopup())
-                                    .addOnSuccessListener(aVoid1 -> {
-                                        Log.d("Firebase", "Courses Data Added Successfully!");
-                                        dialog.dismiss();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.e("Firebase", "Error saving course data: " + e.getMessage());
-                                    });
+                mSchoolData = mStudentData.child("Schools").child(nameOfSchool); // Generate a unique school ID
+                mCoursesData = mSchoolData.child("Courses"); // Generate a unique semester ID
 
+                // Pushing school data
+                mSchoolData.setValue(AddSchoolPopup());
+//.child(programme).child(headingSem).child(nameCourse_1)
+                // Pushing course data
+                mCoursesData.setValue(AddCoursePopup())
+                        .addOnSuccessListener(aVoid -> {
+                            // Data successfully saved
+                            Log.d("Firebase", "Courses Data Added Successfully!");
+                            dialog.dismiss();
                         })
                         .addOnFailureListener(e -> {
-                            Log.e("Firebase", "Error saving school data: " + e.getMessage());
+                            // Error occurred while saving data
+                            Log.e("Firebase", "Error saving data: " + e.getMessage());
                         });
             }
         }

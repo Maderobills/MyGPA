@@ -36,12 +36,15 @@ public class SemesterCourses extends Fragment {
     private ListView coursesList;
     private EditText courseName;
     private Button add_course;
+    SchoolsAdaptor adapterSchools;
     SemCoursesAdaptor adapterCourses;
-    ArrayList<SemCourseFormData> courseList;
+
+    ArrayList<SchoolFormData> schoolList = new ArrayList<>();
+    ArrayList<SemCourseFormData> courseList = new ArrayList<>();
     RecyclerView courseRecycler;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mStudentData, mSchoolData,mCoursesData;
+    private DatabaseReference mStudentData, mSchoolData, mCoursesData;
     private TextView schoolName;
     private TextView gpaScale;
     private TextView semN;
@@ -57,7 +60,7 @@ public class SemesterCourses extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_semester_courses, container, false);
-        
+
         courseRecycler = myView.findViewById(R.id.recycler_id_courses);
 
         LinearLayoutManager layoutManagerCourse = new LinearLayoutManager(getActivity());
@@ -82,8 +85,7 @@ public class SemesterCourses extends Fragment {
         daE.setText(storedDateE);
 
 
-
-        readCourses();
+        readSchools();
 
 
         return myView;
@@ -97,120 +99,59 @@ public class SemesterCourses extends Fragment {
         storedDateE = dateE;
     }
 
-
-    private void readCourses() {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-
-        if (mUser != null) {
-            String uid = mUser.getUid();
-            mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
-            mSchoolData = mStudentData.child("Schools");
-
-            mSchoolData.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    String schoolId = snapshot.getKey();
-                    mCoursesData = snapshot.child("Courses").getRef();
-                    mCoursesData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            courseList.clear();
-                            for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                                SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
-                                if (courseData != null) {
-                                    courseList.add(courseData);
-                                }
-                            }
-                            adapterCourses.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            // Handle database error
-                            Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-
-                // Other overridden methods from ChildEventListener (onChildChanged, onChildRemoved, onChildMoved) can be added here.
-                // They need to be implemented as required by your app's logic.
-            });
-        }
-    }
-
-
-    /*private void readCourses() {
+    private void readSchools() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         if (mUser != null) {
             String uid = mUser.getUid();
+            DatabaseReference schoolsReference = FirebaseDatabase.getInstance().getReference()
+                    .child("Students").child(uid).child("Schools");
 
-            mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
-            mSchoolData = mStudentData.child("Schools"); // Reference to schools for the user
-
-            mSchoolData.addValueEventListener(new ValueEventListener() {
+            schoolsReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                     for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
-                        // Iterate through each school
-                        String schoolId = schoolSnapshot.getKey();
-
-                        mCoursesData = schoolSnapshot.child(schoolId).child("Courses").getRef(); // Reference to courses under each school
-
-                        mCoursesData.addValueEventListener(new ValueEventListener() {
-
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                courseList.clear();
-                                for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                                    String courseID = courseSnapshot.getKey();
-                                    SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
-                                    if (courseData != null) {
-                                        courseList.add(courseData);
-                                    }
-
-                                }
-                                adapterCourses.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle database error
-                                Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        String schName = schoolSnapshot.child("schoolName").getValue(String.class);
+                        if (schName != null) {
+                            readCourses(schName);
+                        }
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle database error
-                    Toast.makeText(getActivity(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
-    }*/
+    }
 
+    private void readCourses(String nameSch) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        if (mUser != null) {
+            String uid = mUser.getUid();
+            DatabaseReference coursesReference = FirebaseDatabase.getInstance().getReference()
+                    .child("Students").child(uid).child("Schools");
+
+            coursesReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    courseList.clear();
+                    for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
+                        SemCourseFormData courseData = courseSnapshot.child(nameSch).getValue(SemCourseFormData.class);
+                        if (courseData != null) {
+                            courseList.add(courseData);
+                        }
+                    }
+                    adapterCourses.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 }
