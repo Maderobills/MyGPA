@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
         holder.courseNameTextView.setText(semCourse.getCourseName());
         holder.courseCodeTextView.setText(semCourse.getCourseCode());
         holder.courseScoreTextView.setText(semCourse.getCourseScore());
+
     }
 
     @Override
