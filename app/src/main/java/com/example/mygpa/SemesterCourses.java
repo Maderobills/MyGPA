@@ -33,18 +33,11 @@ import java.util.ArrayList;
 
 public class SemesterCourses extends Fragment {
 
-    private ListView coursesList;
-    private EditText courseName;
-    private Button add_course;
-    SchoolsAdaptor adapterSchools;
     SemCoursesAdaptor adapterCourses;
-
-    ArrayList<SchoolFormData> schoolList = new ArrayList<>();
     ArrayList<SemCourseFormData> courseList = new ArrayList<>();
     RecyclerView courseRecycler;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mStudentData, mSchoolData, mCoursesData;
     private TextView schoolName;
     private TextView gpaScale;
     private TextView semN;
@@ -109,62 +102,27 @@ public class SemesterCourses extends Fragment {
 
             coursesReference.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     courseList.clear();
-                    for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                        SemCourseFormData courseData = courseSnapshot.child("Courses").child(nameSch).getValue(SemCourseFormData.class);
-                        if (courseData != null) {
-                            courseList.add(courseData);
-                        }
-                    }
-                    adapterCourses.notifyDataSetChanged();
-                }
+                    // Clear the courseList before adding new data
+                    for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
+                        // Retrieve courses only for the school with ID "DUC"
+                        for (DataSnapshot courseSnapshot : schoolSnapshot.child("Courses").child(nameSch).child("Semester 1").getChildren()) {
+                            SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
-
-
-/*
-    private void readCourses(String nameSch) {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
-        if (mUser != null) {
-            String uid = mUser.getUid();
-            DatabaseReference coursesReference = FirebaseDatabase.getInstance().getReference()
-                    .child("Students").child(uid).child("Schools");
-
-            coursesReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                    for (DataSnapshot schoolSnapshot : dataSnapshot.child(nameSch).getChildren()) {
-                        courseList.clear();
-                        if (nameSch.equals("DUC")) {
-                            // Retrieve courses only for the school with ID "DUC"
-                            for (DataSnapshot courseSnapshot : schoolSnapshot.getChildren()) {
-
-                                SemCourseFormData courseData = courseSnapshot.child("Courses").getValue(SemCourseFormData.class);
-                                if (courseData != null) {
-                                    courseList.add(courseData);
-                                }
+                            if (courseData != null) {
+                                courseList.add(courseData);
                             }
-                            break; // Break the loop once courses for "DUC" are retrieved
                         }
                     }
+                    // Initialize and set adapter to the RecyclerView here
                     adapterCourses.notifyDataSetChanged();
                 }
-
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getActivity(), "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
-*/
 }

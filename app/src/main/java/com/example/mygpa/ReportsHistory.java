@@ -75,7 +75,7 @@ public class ReportsHistory extends Fragment {
                         SchoolFormData schoolsData = schoolSnapshot.getValue(SchoolFormData.class);
                         if (schoolsData != null) {
                             schoolList.add(schoolsData);
-                            readCourses(schoolsData.getSchoolName());
+                            readCourses();
                         }
                     }
 
@@ -89,7 +89,76 @@ public class ReportsHistory extends Fragment {
             });
         }
     }
+    private void readCourses() {
+        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
+                .child("Students").child(mAuth.getUid()).child("Schools");
 
+        coursesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courseList.clear();
+                // Clear the courseList before adding new data
+                for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
+                    DataSnapshot coursesSnapshot = schoolSnapshot.child("Courses");
+                    for (DataSnapshot semesterSnapshot : coursesSnapshot.getChildren()) {
+                        for (DataSnapshot courseSnapshot : semesterSnapshot.child("Semester 1").getChildren()) {
+                            SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                            if (courseData != null) {
+                                courseList.add(courseData);
+                            }
+                        }
+                    }
+                }
+                // Initialize and set adapter to the RecyclerView here
+                adapterCourses.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //RETRIEVES SPECIFIC SCHOOL
+    /*private void readCourses(String keyS) {
+        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
+                .child("Students").child(mAuth.getUid()).child("Schools");
+
+        coursesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                // Clear the courseList before adding new data
+                for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
+                    String schoolKey = schoolSnapshot.getKey();
+                    if (schoolKey != null && schoolKey.equals(keyS)) {
+                        courseList.clear();
+                        // Retrieve courses for the specific school with ID "keyS"
+                        DataSnapshot coursesSnapshot = schoolSnapshot.child("Courses").child(keyS);
+                        if (coursesSnapshot.exists()) {
+                            for (DataSnapshot courseSnapshot : coursesSnapshot.child("Semester 1").getChildren()) {
+                                SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                                if (courseData != null) {
+                                    courseList.add(courseData);
+                                }
+                            }
+                        }
+                        break; // Break the loop once courses for the specific school are retrieved
+                    }
+                }
+                // Initialize and set adapter to the RecyclerView here
+                adapterCourses.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
+
+/*
     private void readCourses(String keyS) {
         DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
                 .child("Students").child(mAuth.getUid()).child("Schools");
@@ -100,8 +169,10 @@ public class ReportsHistory extends Fragment {
                 courseList.clear();
                 // Clear the courseList before adding new data
                 for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
+
                         // Retrieve courses only for the school with ID "DUC"
-                        for (DataSnapshot courseSnapshot : schoolSnapshot.child("Courses").getChildren()) {
+                        for (DataSnapshot courseSnapshot : schoolSnapshot.child("Courses").child(keyS).getChildren()) {
+                            String ckey = courseSnapshot.getKey();
                             SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
 
                             if (courseData != null) {
@@ -118,5 +189,6 @@ public class ReportsHistory extends Fragment {
             }
         });
     }
+*/
 }
 
