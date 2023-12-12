@@ -38,6 +38,7 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
         holder.courseNameTextView.setText(semCourse.getCourseName());
         holder.courseCodeTextView.setText(semCourse.getCourseCode());
         holder.courseScoreTextView.setText(semCourse.getCourseScore());
+        holder.creditHoursTextView.setText(semCourse.getCreditHours());
 
     }
 
@@ -51,6 +52,7 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
         TextView courseNameTextView;
         TextView courseCodeTextView;
         TextView courseScoreTextView;
+        TextView creditHoursTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +60,7 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
             courseNameTextView = itemView.findViewById(R.id.nameOfCourse);
             courseCodeTextView = itemView.findViewById(R.id.codeOfCourse);
             courseScoreTextView = itemView.findViewById(R.id.scoreOfCourse);
+            creditHoursTextView = itemView.findViewById(R.id.creditHourCourse);
         }
     }
 }

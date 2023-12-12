@@ -6,16 +6,19 @@ public class SemCourseFormData {
     private String courseCode;
     private String courseScore;
 
+    private String creditHours;
+
     public SemCourseFormData() {
         // Default constructor required for Firebase
     }
 
     // Constructor with semester heading and course details
-    public SemCourseFormData(String semHeading, String courseName, String courseCode, String courseScore) {
+    public SemCourseFormData(String semHeading, String courseName, String courseCode, String courseScore, String creditHours) {
         this.semHeading = semHeading;
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.courseScore = courseScore;
+        this.creditHours = creditHours;
     }
 
     // Getters and setters for each field
@@ -49,5 +52,13 @@ public class SemCourseFormData {
 
     public void setCourseScore(String courseScore) {
         this.courseScore = courseScore;
+    }
+
+    public String getCreditHours() {
+        return creditHours;
+    }
+
+    public void setCreditHours(String creditHours) {
+        this.creditHours = creditHours;
     }
 }

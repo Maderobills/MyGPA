@@ -89,6 +89,7 @@ public class ReportsHistory extends Fragment {
             });
         }
     }
+
     private void readCourses() {
         DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
                 .child("Students").child(mAuth.getUid()).child("Schools");
@@ -102,6 +103,12 @@ public class ReportsHistory extends Fragment {
                     DataSnapshot coursesSnapshot = schoolSnapshot.child("Courses");
                     for (DataSnapshot semesterSnapshot : coursesSnapshot.getChildren()) {
                         for (DataSnapshot courseSnapshot : semesterSnapshot.child("Semester 1").getChildren()) {
+                            SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
+                            if (courseData != null) {
+                                courseList.add(courseData);
+                            }
+                        }
+                        for (DataSnapshot courseSnapshot : semesterSnapshot.child("Semester 2").getChildren()) {
                             SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
                             if (courseData != null) {
                                 courseList.add(courseData);
@@ -158,37 +165,5 @@ public class ReportsHistory extends Fragment {
         });
     }*/
 
-/*
-    private void readCourses(String keyS) {
-        DatabaseReference coursesRef = FirebaseDatabase.getInstance().getReference()
-                .child("Students").child(mAuth.getUid()).child("Schools");
-
-        coursesRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                courseList.clear();
-                // Clear the courseList before adding new data
-                for (DataSnapshot schoolSnapshot : snapshot.getChildren()) {
-
-                        // Retrieve courses only for the school with ID "DUC"
-                        for (DataSnapshot courseSnapshot : schoolSnapshot.child("Courses").child(keyS).getChildren()) {
-                            String ckey = courseSnapshot.getKey();
-                            SemCourseFormData courseData = courseSnapshot.getValue(SemCourseFormData.class);
-
-                            if (courseData != null) {
-                                courseList.add(courseData);
-                            }
-                        }
-                }
-                // Initialize and set adapter to the RecyclerView here
-                adapterCourses.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-*/
 }
 

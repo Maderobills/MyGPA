@@ -4,970 +4,1127 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontal_view"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="false">
+        android:orientation="horizontal">
 
+        <!-- School Info -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/School_Info"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_background2"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-            <!-- School Info -->
             <LinearLayout
-                android:id="@+id/School_Info"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background2"
-                android:orientation="vertical">
+                android:background="@drawable/form_input_background"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/form_input_background"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Fill this Form"
-                        android:textColor="@color/white" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <EditText
-                            android:id="@+id/schoolNameEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:hint="Name of School"
-                            android:padding="5dp"
-                            android:textColorHint="@color/lavender" />
-
-                        <EditText
-                            android:id="@+id/programEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:hint="Programme"
-                            android:padding="5dp"
-                            android:textColorHint="@color/lavender" />
-
-                        <EditText
-                            android:id="@+id/startDateEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:hint="Start Date"
-                            android:inputType="date"
-                            android:padding="5dp"
-                            android:textColorHint="@color/lavender" />
-
-                        <EditText
-                            android:id="@+id/endDateEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:hint="End Date"
-                            android:inputType="date"
-                            android:padding="5dp"
-                            android:textColorHint="@color/lavender" />
-
-                        <EditText
-                            android:id="@+id/semestersEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:hint="Number of Semesters"
-                            android:inputType="number"
-                            android:padding="5dp"
-                            android:textColorHint="@color/lavender" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="2.5dp"
-                            android:background="@drawable/form_input_background"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/lavender"
-                                android:text="Select GPA scale"
-                                android:textColor="@color/white" />
-
-                            <RadioGroup
-                                android:id="@+id/gpaRadioGroup"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <RadioButton
-                                    android:id="@+id/radio_4_0"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:buttonTint="@color/lavender"
-                                    android:text="4.0"
-                                    android:textColor="@color/lavender" />
-
-                                <RadioButton
-                                    android:id="@+id/radio_5_0"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:buttonTint="@color/lavender"
-                                    android:text="5.0"
-                                    android:textColor="@color/lavender" />
-                            </RadioGroup>
-
-                        </LinearLayout>
-
-                        <!-- Add a Next button to scroll -->
-                        <Button
-                            android:id="@+id/nextScrollButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="30dp"
-                            android:text="Next" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Course Info Sem 1-->
-            <LinearLayout
-                android:id="@+id/Course_Info"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background2"
-                android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Fill this Form"
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/form_input_background"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="16dp">
+
+                    <EditText
+                        android:id="@+id/schoolNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="Name of School"
+                        android:padding="5dp"
+                        android:textColorHint="@color/lavender" />
+
+                    <EditText
+                        android:id="@+id/programEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="Programme"
+                        android:padding="5dp"
+                        android:textColorHint="@color/lavender" />
+
+                    <EditText
+                        android:id="@+id/startDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="Start Date"
+                        android:inputType="date"
+                        android:padding="5dp"
+                        android:textColorHint="@color/lavender" />
+
+                    <EditText
+                        android:id="@+id/endDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="End Date"
+                        android:inputType="date"
+                        android:padding="5dp"
+                        android:textColorHint="@color/lavender" />
+
+                    <EditText
+                        android:id="@+id/semestersEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="Number of Semesters"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        android:textColorHint="@color/lavender" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="3dp"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Add Your Courses"
+                            android:background="@color/lavender"
+                            android:text="Select GPA scale"
                             android:textColor="@color/white" />
 
-                        <TextView
-                            android:id="@+id/semHead"
+                        <RadioGroup
+                            android:id="@+id/gpaRadioGroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="3dp"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="Semester 1"
-                            android:textColor="@color/lavender" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <ScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="320dp"
-                            android:background="@drawable/form_input_background"
-                            android:padding="5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_1"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_1"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_3"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_3"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_4"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_4"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_4"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_5"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_5"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_5"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_6"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_6"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_6"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </ScrollView>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:gravity="center"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/cancelButton"
+                            <RadioButton
+                                android:id="@+id/radio_4_0"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
-                                android:layout_weight="2"
-                                android:text="X" />
-
-                            <Button
-                                android:id="@+id/nextScrollButton_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
                                 android:layout_weight="1"
-                                android:text="next" />
+                                android:buttonTint="@color/lavender"
+                                android:text="4.0"
+                                android:textColor="@color/lavender" />
 
-                            <Button
-                                android:id="@+id/addButton"
+                            <RadioButton
+                                android:id="@+id/radio_5_0"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
                                 android:layout_weight="1"
-                                android:text="Add" />
-
-                        </LinearLayout>
+                                android:buttonTint="@color/lavender"
+                                android:text="5.0"
+                                android:textColor="@color/lavender" />
+                        </RadioGroup>
 
                     </LinearLayout>
 
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <!-- Course Info Sem 2-->
-            <LinearLayout
-                android:id="@+id/Course_Info_2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background2"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/form_input_background"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <LinearLayout
+                    <!-- Add a Next button to scroll -->
+                    <Button
+                        android:id="@+id/nextScrollButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="3dp"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="Add Your Courses"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/semHead_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="3dp"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="Semester 2"
-                            android:textColor="@color/lavender" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <ScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="320dp"
-                            android:background="@drawable/form_input_background"
-                            android:padding="5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_1_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_1_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_1_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_2_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_2_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_2_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_3_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_3_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_3_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_4_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_4_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_4_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_5_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_5_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_5_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginVertical="3dp"
-                                    android:orientation="vertical">
-
-                                    <EditText
-                                        android:id="@+id/course_name_6_s2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginVertical="2.5dp"
-                                        android:layout_weight="3"
-                                        android:background="@drawable/form_input_background"
-                                        android:hint="Course Name"
-                                        android:padding="7dp"
-                                        android:textColorHint="@color/lavender" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <EditText
-                                            android:id="@+id/course_code_6_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginRight="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Code"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-
-                                        <EditText
-                                            android:id="@+id/course_score_6_s2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="2.5dp"
-                                            android:layout_marginLeft="2.5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/form_input_background"
-                                            android:hint="Score"
-                                            android:padding="5dp"
-                                            android:textColorHint="@color/lavender" />
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </ScrollView>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
-
-
-                            <Button
-                                android:id="@+id/backScrollButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
-                                android:layout_weight="1"
-                                android:text="back" />
-
-                            <Button
-                                android:id="@+id/nextScrollButton_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
-                                android:layout_weight="2"
-                                android:text="next" />
-
-                            <Button
-                                android:id="@+id/addButton_s2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
-                                android:layout_weight="1"
-                                android:text="Add" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
+                        android:layout_margin="30dp"
+                        android:text="Next" />
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-    </HorizontalScrollView>
+
+        <!-- Course Info Sem 1-->
+        <LinearLayout
+            android:id="@+id/Course_Info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_background2"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@drawable/form_input_background"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layout_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="Add Your Courses"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/semHead"
+                        android:background="@drawable/form_input_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:text="Semester 1"
+                        android:textColor="@color/lavender" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="320dp"
+                        android:background="@drawable/form_input_background"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/schScrollButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="1"
+                            android:text="Back" />
+
+                        <Button
+                            android:id="@+id/nextScrollButton_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="1"
+                            android:text="next" />
+
+                        <Button
+                            android:id="@+id/addButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="1"
+                            android:text="Add" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- Course Info Sem 2-->
+        <LinearLayout
+            android:id="@+id/Course_Info_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_background2"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@drawable/form_input_background"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layout_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="Add Your Courses"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/semHead_2"
+                        android:background="@drawable/form_input_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:text="Semester 2"
+                        android:textColor="@color/lavender" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="320dp"
+                        android:background="@drawable/form_input_background"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_1_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_1_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_1_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_1_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_2_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_2_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_2_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_2_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_3_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_3_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_3_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_3_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_4_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_4_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_4_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_4_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_5_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_5_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_5_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_5_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="3dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/course_name_6_s2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="2.5dp"
+                                    android:layout_weight="3"
+                                    android:background="@drawable/form_input_background"
+                                    android:hint="Course Name"
+                                    android:padding="7dp"
+                                    android:textColorHint="@color/lavender" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/course_code_6_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginRight="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Code"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+
+                                    <EditText
+                                        android:id="@+id/course_score_6_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Score"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                    <EditText
+                                        android:id="@+id/credit_hours_6_s2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginVertical="2.5dp"
+                                        android:layout_marginLeft="2.5dp"
+                                        android:layout_weight="1"
+                                        android:inputType="number"
+                                        android:background="@drawable/form_input_background"
+                                        android:hint="Hour(s)"
+                                        android:padding="5dp"
+                                        android:textColorHint="@color/lavender" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/backScrollSem_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="1"
+                            android:text="back" />
+
+                        <Button
+                            android:id="@+id/nextScrollButton_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="2"
+                            android:text="next" />
+
+                        <Button
+                            android:id="@+id/addButton_s2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_weight="1"
+                            android:text="Add" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

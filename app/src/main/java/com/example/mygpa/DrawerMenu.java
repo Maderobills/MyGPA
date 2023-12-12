@@ -49,6 +49,7 @@ public class DrawerMenu extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mSchoolData, mCoursesData, mCoursesData_2, mCoursesData_3, mCoursesData_4, mCoursesData_5, mCoursesData_6;
+    private DatabaseReference mCoursesData_s2, mCoursesData_2_s2, mCoursesData_3_s2, mCoursesData_4_s2, mCoursesData_5_s2, mCoursesData_6_s2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,14 +153,20 @@ public class DrawerMenu extends AppCompatActivity {
         // Set the content view to your custom layout (addgparecord_popup)
         dialog.setContentView(R.layout.addgparecord_popup);
 
-        final HorizontalScrollView horizontalScrollView = dialog.findViewById(R.id.horizontal_view);
+        /*final HorizontalScrollView horizontalScrollView = dialog.findViewById(R.id.horizontal_view);*/
         final LinearLayout schoolInfoView = dialog.findViewById(R.id.School_Info);
         final LinearLayout courseInfoView = dialog.findViewById(R.id.Course_Info);
+        final LinearLayout courseInfoView_2 = dialog.findViewById(R.id.Course_Info_2);
 
         Button nextButton = dialog.findViewById(R.id.nextScrollButton);
-        Button previousButton = dialog.findViewById(R.id.backScrollButton);
-        Button cancelButton = dialog.findViewById(R.id.cancelButton);
+        Button prevSchButton = dialog.findViewById(R.id.schScrollButton);
+
+        Button scrollSem_2 = dialog.findViewById(R.id.nextScrollButton_1);
+        Button scrollBckSem_1 = dialog.findViewById(R.id.backScrollSem_1);
         Button addRecordButton = dialog.findViewById(R.id.addButton);
+
+        Button scrollSem_3 = dialog.findViewById(R.id.nextScrollButton_2);
+        Button addRecFrmSem_2 =dialog.findViewById(R.id.addButton_s2);
 
         // Define a local inner class
         class recAddClass {
@@ -200,6 +207,10 @@ public class DrawerMenu extends AppCompatActivity {
                     endDate.setError("Specify End Date");
                     return null;
                 }
+                if (TextUtils.isEmpty(semNumber)) {
+                    semNum.setError("Specify ");
+                    return null;
+                }
 
                 String selectedGpaScale = "";
 
@@ -210,233 +221,517 @@ public class DrawerMenu extends AppCompatActivity {
                 } else {
                     Toast.makeText(DrawerMenu.this, "Select GPA scale", Toast.LENGTH_SHORT).show();
                 }
-                scrL();
+
+                /*scrL();*/
+                naviSem_1();
+
 
                 SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
                 return data;
             }
 
-            private void scrL() {
-                // Scroll to the Course Info section
-                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-                courseInfoView.showContextMenu();
+            private void naviSem_1(){
+
+                // Hide School_Info layout
+                schoolInfoView.setVisibility(View.GONE);
+                // Show Course_Info layout
+                courseInfoView.setVisibility(View.VISIBLE);
+                courseInfoView_2.setVisibility(View.GONE);
+                EditText sems = dialog.findViewById(R.id.semestersEditText);
+                int semVal = Integer.parseInt(sems.getText().toString().trim());
+                if (semVal > 0 && semVal <= 8) {
+                    // Check different cases based on the number of semesters
+                    switch (semVal) {
+                        case 1:
+                            scrollSem_2.setVisibility(View.GONE);
+                            scrollSem_3.setVisibility(View.GONE);
+                            break;
+                        case 2:
+                            scrollSem_2.setVisibility(View.VISIBLE);
+                            scrollSem_3.setVisibility(View.GONE);
+                            break;
+                        default:
+                            // Handle cases where more than 2 semesters are selected
+                            // Show all relevant views here if needed
+                            break;
+                    }
+                } else {
+                    // The value is outside the range of 1 to 8
+                    // Handle the case where the value is not within the range
+                }
+            }
+            private void naviSem_2(){
+                // Hide School_Info layout
+                schoolInfoView.setVisibility(View.GONE);
+                courseInfoView.setVisibility(View.GONE);
+                // Show Course_Info layout
+                courseInfoView_2.setVisibility(View.VISIBLE);
             }
 
-            private SemCourseFormData AddCoursePopup() {
+            class AddCoursesSem_1 {
+                private SemCourseFormData AddCoursePopup() {
 
 
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_1 = dialog.findViewById(R.id.course_name_1);
-                final EditText courseCode_1 = dialog.findViewById(R.id.course_code_1);
-                final EditText courseScore_1 = dialog.findViewById(R.id.course_score_1);
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_1 = dialog.findViewById(R.id.course_name_1);
+                    final EditText courseCode_1 = dialog.findViewById(R.id.course_code_1);
+                    final EditText courseScore_1 = dialog.findViewById(R.id.course_score_1);
+                    final EditText creditHours_1 = dialog.findViewById(R.id.credit_hours_1);
 
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_1 = courseName_1.getText().toString().trim();
-                String codeCourse_1 = courseCode_1.getText().toString().trim();
-                String scoreCourse_1 = courseScore_1.getText().toString().trim();
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_1 = courseName_1.getText().toString().trim();
+                    String codeCourse_1 = courseCode_1.getText().toString().trim();
+                    String scoreCourse_1 = courseScore_1.getText().toString().trim();
+                    String hoursCredit_1 = creditHours_1.getText().toString().trim();
 
-
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
-                }
-                if (TextUtils.isEmpty(nameCourse_1)) {
-                    courseName_1.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_1)) {
-                    courseCode_1.setError("Enter Course Code");
-                    return null;
-                }
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_1)) {
+                        courseName_1.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_1)) {
+                        courseCode_1.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_1)) {
+                        creditHours_1.setError("Enter Credit Hours");
+                        return null;
+                    }
         /*if (TextUtils.isEmpty(scoreCourse_1)){
             courseScore_1.setError("Specify End Date");
             return;
         }*/
 
-                SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1);
-                return dataSemCourse;
+                    SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1, hoursCredit_1);
+                    return dataSemCourse;
 
+                }
+
+                private SemCourseFormData AddCoursePopup_2() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_2 = dialog.findViewById(R.id.course_name_2);
+                    final EditText courseCode_2 = dialog.findViewById(R.id.course_code_2);
+                    final EditText courseScore_2 = dialog.findViewById(R.id.course_score_2);
+                    final EditText creditHours_2 = dialog.findViewById(R.id.credit_hours_2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_2 = courseName_2.getText().toString().trim();
+                    String codeCourse_2 = courseCode_2.getText().toString().trim();
+                    String scoreCourse_2 = courseScore_2.getText().toString().trim();
+                    String hoursCredit_2 = creditHours_2.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_2)) {
+                        courseName_2.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_2)) {
+                        courseCode_2.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_2)){
+                        creditHours_2.setError("Specify Credit Hours");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_2 = new SemCourseFormData(headingSem, nameCourse_2, codeCourse_2, scoreCourse_2, hoursCredit_2);
+                    return dataSemCourse_2;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_3() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_3 = dialog.findViewById(R.id.course_name_3);
+                    final EditText courseCode_3 = dialog.findViewById(R.id.course_code_3);
+                    final EditText courseScore_3 = dialog.findViewById(R.id.course_score_3);
+                    final EditText creditHours_3 = dialog.findViewById(R.id.credit_hours_3);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_3 = courseName_3.getText().toString().trim();
+                    String codeCourse_3 = courseCode_3.getText().toString().trim();
+                    String scoreCourse_3 = courseScore_3.getText().toString().trim();
+                    String hoursCredit_3 = creditHours_3.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_3)) {
+                        courseName_3.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_3)) {
+                        courseCode_3.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_3)){
+                        creditHours_3.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_3 = new SemCourseFormData(headingSem, nameCourse_3, codeCourse_3, scoreCourse_3, hoursCredit_3);
+                    return dataSemCourse_3;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_4() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_4 = dialog.findViewById(R.id.course_name_4);
+                    final EditText courseCode_4 = dialog.findViewById(R.id.course_code_4);
+                    final EditText courseScore_4 = dialog.findViewById(R.id.course_score_4);
+                    final EditText creditHours_4 = dialog.findViewById(R.id.credit_hours_4);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_4 = courseName_4.getText().toString().trim();
+                    String codeCourse_4 = courseCode_4.getText().toString().trim();
+                    String scoreCourse_4 = courseScore_4.getText().toString().trim();
+                    String hoursCredit_4 = creditHours_4.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_4)) {
+                        courseName_4.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_4)) {
+                        courseCode_4.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_4)){
+                        creditHours_4.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_4 = new SemCourseFormData(headingSem, nameCourse_4, codeCourse_4, scoreCourse_4, hoursCredit_4);
+                    return dataSemCourse_4;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_5() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_5 = dialog.findViewById(R.id.course_name_5);
+                    final EditText courseCode_5 = dialog.findViewById(R.id.course_code_5);
+                    final EditText courseScore_5 = dialog.findViewById(R.id.course_score_5);
+                    final EditText creditHours_5 = dialog.findViewById(R.id.credit_hours_5);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_5 = courseName_5.getText().toString().trim();
+                    String codeCourse_5 = courseCode_5.getText().toString().trim();
+                    String scoreCourse_5 = courseScore_5.getText().toString().trim();
+                    String hoursCredit_5 = creditHours_5.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_5)) {
+                        courseName_5.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_5)) {
+                        courseCode_5.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_5)){
+                        creditHours_5.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_5 = new SemCourseFormData(headingSem, nameCourse_5, codeCourse_5, scoreCourse_5, hoursCredit_5);
+                    return dataSemCourse_5;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_6() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead);
+                    final EditText courseName_6 = dialog.findViewById(R.id.course_name_6);
+                    final EditText courseCode_6 = dialog.findViewById(R.id.course_code_6);
+                    final EditText courseScore_6 = dialog.findViewById(R.id.course_score_6);
+                    final EditText creditHours_6 = dialog.findViewById(R.id.credit_hours_6);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_6 = courseName_6.getText().toString().trim();
+                    String codeCourse_6 = courseCode_6.getText().toString().trim();
+                    String scoreCourse_6 = courseScore_6.getText().toString().trim();
+                    String hoursCredit_6 = creditHours_6.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_6)) {
+                        courseName_6.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_6)) {
+                        courseCode_6.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_6)){
+                        creditHours_6.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_6 = new SemCourseFormData(headingSem, nameCourse_6, codeCourse_6, scoreCourse_6, hoursCredit_6);
+                    return dataSemCourse_6;
+
+                }
             }
-
-            private SemCourseFormData AddCoursePopup_2() {
-
-
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_2 = dialog.findViewById(R.id.course_name_2);
-                final EditText courseCode_2 = dialog.findViewById(R.id.course_code_2);
-                final EditText courseScore_2 = dialog.findViewById(R.id.course_score_2);
-
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_2 = courseName_2.getText().toString().trim();
-                String codeCourse_2 = courseCode_2.getText().toString().trim();
-                String scoreCourse_2 = courseScore_2.getText().toString().trim();
+            class AddCoursesSem_2 {
+                private SemCourseFormData AddCoursePopup_s2() {
 
 
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_1 = dialog.findViewById(R.id.course_name_1_s2);
+                    final EditText courseCode_1 = dialog.findViewById(R.id.course_code_1_s2);
+                    final EditText courseScore_1 = dialog.findViewById(R.id.course_score_1_s2);
+                    final EditText creditHours_1 = dialog.findViewById(R.id.credit_hours_1_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_1 = courseName_1.getText().toString().trim();
+                    String codeCourse_1 = courseCode_1.getText().toString().trim();
+                    String scoreCourse_1 = courseScore_1.getText().toString().trim();
+                    String hoursCredit_1 = creditHours_1.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_1)) {
+                        courseName_1.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_1)) {
+                        courseCode_1.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_1)){
+                        creditHours_1.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_s2 = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1, hoursCredit_1);
+                    return dataSemCourse_s2;
+
                 }
-                if (TextUtils.isEmpty(nameCourse_2)) {
-                    courseName_2.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_2)) {
-                    courseCode_2.setError("Enter Course Code");
-                    return null;
-                }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
 
-                SemCourseFormData dataSemCourse_2 = new SemCourseFormData(headingSem, nameCourse_2, codeCourse_2, scoreCourse_2);
-                return dataSemCourse_2;
+                private SemCourseFormData AddCoursePopup_2_s2() {
 
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_2 = dialog.findViewById(R.id.course_name_2_s2);
+                    final EditText courseCode_2 = dialog.findViewById(R.id.course_code_2_s2);
+                    final EditText courseScore_2 = dialog.findViewById(R.id.course_score_2_s2);
+                    final EditText creditHours_2 = dialog.findViewById(R.id.credit_hours_2_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_2 = courseName_2.getText().toString().trim();
+                    String codeCourse_2 = courseCode_2.getText().toString().trim();
+                    String scoreCourse_2 = courseScore_2.getText().toString().trim();
+                    String hoursCredit_2 = creditHours_2.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_2)) {
+                        courseName_2.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_2)) {
+                        courseCode_2.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_2)){
+                        creditHours_2.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_2_s2 = new SemCourseFormData(headingSem, nameCourse_2, codeCourse_2, scoreCourse_2, hoursCredit_2);
+                    return dataSemCourse_2_s2;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_3_s2() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_3 = dialog.findViewById(R.id.course_name_3_s2);
+                    final EditText courseCode_3 = dialog.findViewById(R.id.course_code_3_s2);
+                    final EditText courseScore_3 = dialog.findViewById(R.id.course_score_3_s2);
+                    final EditText creditHours_3 = dialog.findViewById(R.id.credit_hours_3_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_3 = courseName_3.getText().toString().trim();
+                    String codeCourse_3 = courseCode_3.getText().toString().trim();
+                    String scoreCourse_3 = courseScore_3.getText().toString().trim();
+                    String hoursCredit_3 = creditHours_3.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_3)) {
+                        courseName_3.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_3)) {
+                        courseCode_3.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_3)){
+                        creditHours_3.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_3_s2 = new SemCourseFormData(headingSem, nameCourse_3, codeCourse_3, scoreCourse_3, hoursCredit_3);
+                    return dataSemCourse_3_s2;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_4_s2() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_4 = dialog.findViewById(R.id.course_name_4_s2);
+                    final EditText courseCode_4 = dialog.findViewById(R.id.course_code_4_s2);
+                    final EditText courseScore_4 = dialog.findViewById(R.id.course_score_4_s2);
+                    final EditText creditHours_4 = dialog.findViewById(R.id.credit_hours_4_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_4 = courseName_4.getText().toString().trim();
+                    String codeCourse_4 = courseCode_4.getText().toString().trim();
+                    String scoreCourse_4 = courseScore_4.getText().toString().trim();
+                    String hoursCredit_4 = creditHours_4.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_4)) {
+                        courseName_4.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_4)) {
+                        courseCode_4.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_4)){
+                        creditHours_4.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_4_s2 = new SemCourseFormData(headingSem, nameCourse_4, codeCourse_4, scoreCourse_4, hoursCredit_4);
+                    return dataSemCourse_4_s2;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_5_s2() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_5 = dialog.findViewById(R.id.course_name_5_s2);
+                    final EditText courseCode_5 = dialog.findViewById(R.id.course_code_5_s2);
+                    final EditText courseScore_5 = dialog.findViewById(R.id.course_score_5_s2);
+                    final EditText creditHours_5 = dialog.findViewById(R.id.credit_hours_5_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_5 = courseName_5.getText().toString().trim();
+                    String codeCourse_5 = courseCode_5.getText().toString().trim();
+                    String scoreCourse_5 = courseScore_5.getText().toString().trim();
+                    String hoursCredit_5 = creditHours_5.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_5)) {
+                        courseName_5.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_5)) {
+                        courseCode_5.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_5)){
+                        creditHours_5.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_5_s2 = new SemCourseFormData(headingSem, nameCourse_5, codeCourse_5, scoreCourse_5, hoursCredit_5);
+                    return dataSemCourse_5_s2;
+
+                }
+
+                private SemCourseFormData AddCoursePopup_6_s2() {
+
+
+                    final TextView semHeading = dialog.findViewById(R.id.semHead_2);
+                    final EditText courseName_6 = dialog.findViewById(R.id.course_name_6_s2);
+                    final EditText courseCode_6 = dialog.findViewById(R.id.course_code_6_s2);
+                    final EditText courseScore_6 = dialog.findViewById(R.id.course_score_6_s2);
+                    final EditText creditHours_6 = dialog.findViewById(R.id.credit_hours_6_s2);
+
+                    String headingSem = semHeading.getText().toString().trim();
+                    String nameCourse_6 = courseName_6.getText().toString().trim();
+                    String codeCourse_6 = courseCode_6.getText().toString().trim();
+                    String scoreCourse_6 = courseScore_6.getText().toString().trim();
+                    String hoursCredit_6 = creditHours_6.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(headingSem)) {
+                        semHeading.setError("Enter Semester Number");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(nameCourse_6)) {
+                        courseName_6.setError("Enter Course Title");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(codeCourse_6)) {
+                        courseCode_6.setError("Enter Course Code");
+                        return null;
+                    }
+                    if (TextUtils.isEmpty(hoursCredit_6)){
+                        creditHours_6.setError("Specify End Date");
+                        return null;
+                    }
+
+                    SemCourseFormData dataSemCourse_6_s2 = new SemCourseFormData(headingSem, nameCourse_6, codeCourse_6, scoreCourse_6, hoursCredit_6);
+                    return dataSemCourse_6_s2;
+
+                }
             }
+            AddCoursesSem_1 inner_1 = new AddCoursesSem_1();
+            AddCoursesSem_2 inner_2 = new AddCoursesSem_2();
 
-            private SemCourseFormData AddCoursePopup_3() {
-
-
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_3 = dialog.findViewById(R.id.course_name_3);
-                final EditText courseCode_3 = dialog.findViewById(R.id.course_code_3);
-                final EditText courseScore_3 = dialog.findViewById(R.id.course_score_3);
-
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_3 = courseName_3.getText().toString().trim();
-                String codeCourse_3 = courseCode_3.getText().toString().trim();
-                String scoreCourse_3 = courseScore_3.getText().toString().trim();
-
-
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
-                }
-                if (TextUtils.isEmpty(nameCourse_3)) {
-                    courseName_3.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_3)) {
-                    courseCode_3.setError("Enter Course Code");
-                    return null;
-                }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
-
-                SemCourseFormData dataSemCourse_3 = new SemCourseFormData(headingSem, nameCourse_3, codeCourse_3, scoreCourse_3);
-                return dataSemCourse_3;
-
-            }
-
-            private SemCourseFormData AddCoursePopup_4() {
-
-
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_4 = dialog.findViewById(R.id.course_name_4);
-                final EditText courseCode_4 = dialog.findViewById(R.id.course_code_4);
-                final EditText courseScore_4 = dialog.findViewById(R.id.course_score_4);
-
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_4 = courseName_4.getText().toString().trim();
-                String codeCourse_4 = courseCode_4.getText().toString().trim();
-                String scoreCourse_4 = courseScore_4.getText().toString().trim();
-
-
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
-                }
-                if (TextUtils.isEmpty(nameCourse_4)) {
-                    courseName_4.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_4)) {
-                    courseCode_4.setError("Enter Course Code");
-                    return null;
-                }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
-
-                SemCourseFormData dataSemCourse_4 = new SemCourseFormData(headingSem, nameCourse_4, codeCourse_4, scoreCourse_4);
-                return dataSemCourse_4;
-
-            }
-
-            private SemCourseFormData AddCoursePopup_5() {
-
-
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_5 = dialog.findViewById(R.id.course_name_5);
-                final EditText courseCode_5 = dialog.findViewById(R.id.course_code_5);
-                final EditText courseScore_5 = dialog.findViewById(R.id.course_score_5);
-
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_5 = courseName_5.getText().toString().trim();
-                String codeCourse_5 = courseCode_5.getText().toString().trim();
-                String scoreCourse_5 = courseScore_5.getText().toString().trim();
-
-
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
-                }
-                if (TextUtils.isEmpty(nameCourse_5)) {
-                    courseName_5.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_5)) {
-                    courseCode_5.setError("Enter Course Code");
-                    return null;
-                }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
-
-                SemCourseFormData dataSemCourse_5 = new SemCourseFormData(headingSem, nameCourse_5, codeCourse_5, scoreCourse_5);
-                return dataSemCourse_5;
-
-            }
-
-            private SemCourseFormData AddCoursePopup_6() {
-
-
-                final TextView semHeading = dialog.findViewById(R.id.semHead);
-                final EditText courseName_6 = dialog.findViewById(R.id.course_name_6);
-                final EditText courseCode_6 = dialog.findViewById(R.id.course_code_6);
-                final EditText courseScore_6 = dialog.findViewById(R.id.course_score_6);
-
-                String headingSem = semHeading.getText().toString().trim();
-                String nameCourse_6 = courseName_6.getText().toString().trim();
-                String codeCourse_6 = courseCode_6.getText().toString().trim();
-                String scoreCourse_6 = courseScore_6.getText().toString().trim();
-
-
-                if (TextUtils.isEmpty(headingSem)) {
-                    semHeading.setError("Enter Semester Number");
-                    return null;
-                }
-                if (TextUtils.isEmpty(nameCourse_6)) {
-                    courseName_6.setError("Enter Course Title");
-                    return null;
-                }
-                if (TextUtils.isEmpty(codeCourse_6)) {
-                    courseCode_6.setError("Enter Course Code");
-                    return null;
-                }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
-
-                SemCourseFormData dataSemCourse_6 = new SemCourseFormData(headingSem, nameCourse_6, codeCourse_6, scoreCourse_6);
-                return dataSemCourse_6;
-
-            }
 
             private void pushData() {
                 mAuth = FirebaseAuth.getInstance();
@@ -448,8 +743,10 @@ public class DrawerMenu extends AppCompatActivity {
 
                 TextView semHeading = dialog.findViewById(R.id.semHead);
                 String headingSem = semHeading.getText().toString().trim();
+                TextView semHeading_2 = dialog.findViewById(R.id.semHead_2);
+                String headingSem_2 = semHeading_2.getText().toString().trim();
 
-                EditText programmeName = dialog.findViewById(R.id.programEditText);
+                /*EditText programmeName = dialog.findViewById(R.id.programEditText);
                 String programme = programmeName.getText().toString().trim();
 
                 EditText courseName_1 = dialog.findViewById(R.id.course_name_1);
@@ -468,33 +765,53 @@ public class DrawerMenu extends AppCompatActivity {
                 String nameCourse_5 = courseName_5.getText().toString().trim();
 
                 EditText courseName_6 = dialog.findViewById(R.id.course_name_6);
-                String nameCourse_6 = courseName_6.getText().toString().trim();
+                String nameCourse_6 = courseName_6.getText().toString().trim();*/
 
                 DatabaseReference mStudentData = FirebaseDatabase.getInstance().getReference().child("Students").child(uid);
                 mSchoolData = mStudentData.child("Schools").child(nameOfSchool); // Generate a unique school ID
                 mCoursesData = mSchoolData.child("Courses").child(nameOfSchool).child(headingSem); // Generate a unique semester ID
+                mCoursesData_s2 = mSchoolData.child("Courses").child(nameOfSchool).child(headingSem_2); // Generate a unique semester ID
 
                 // Pushing school data
                 mSchoolData.setValue(AddSchoolPopup());
 
                 // Pushing course data with unique keys
                 DatabaseReference mCoursesData_1 = mCoursesData.push();
-                mCoursesData_1.setValue(AddCoursePopup());
+                mCoursesData_1.setValue(inner_1.AddCoursePopup());
 
                 mCoursesData_2 = mCoursesData.push();
-                mCoursesData_2.setValue(AddCoursePopup_2());
+                mCoursesData_2.setValue(inner_1.AddCoursePopup_2());
 
                 mCoursesData_3 = mCoursesData.push();
-                mCoursesData_3.setValue(AddCoursePopup_3());
+                mCoursesData_3.setValue(inner_1.AddCoursePopup_3());
 
                 mCoursesData_4 = mCoursesData.push();
-                mCoursesData_4.setValue(AddCoursePopup_4());
+                mCoursesData_4.setValue(inner_1.AddCoursePopup_4());
 
                 mCoursesData_5 = mCoursesData.push();
-                mCoursesData_5.setValue(AddCoursePopup_5());
+                mCoursesData_5.setValue(inner_1.AddCoursePopup_5());
 
                 mCoursesData_6 = mCoursesData.push();
-                mCoursesData_6.setValue(AddCoursePopup_6());
+                mCoursesData_6.setValue(inner_1.AddCoursePopup_6());
+
+                ///SEM_2
+                DatabaseReference mCoursesData_2 = mCoursesData_s2.push();
+                mCoursesData_2.setValue(inner_2.AddCoursePopup_s2());
+
+                mCoursesData_2_s2 = mCoursesData_s2.push();
+                mCoursesData_2_s2.setValue(inner_2.AddCoursePopup_2_s2());
+
+                mCoursesData_3_s2 = mCoursesData_s2.push();
+                mCoursesData_3_s2.setValue(inner_2.AddCoursePopup_3_s2());
+
+                mCoursesData_4_s2 = mCoursesData_s2.push();
+                mCoursesData_4_s2.setValue(inner_2.AddCoursePopup_4_s2());
+
+                mCoursesData_5_s2 = mCoursesData_s2.push();
+                mCoursesData_5_s2.setValue(inner_2.AddCoursePopup_5_s2());
+
+                mCoursesData_6_s2 = mCoursesData_s2.push();
+                mCoursesData_6_s2.setValue(inner_2.AddCoursePopup_6_s2());
 
                 // After saving all courses, listen for completion
                 mCoursesData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -518,35 +835,55 @@ public class DrawerMenu extends AppCompatActivity {
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 inner.AddSchoolPopup();
             }
 
         });
-        previousButton.setOnClickListener(new View.OnClickListener() {
+        prevSchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Scroll to the School Info section
-                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
-                schoolInfoView.showContextMenu();
+                // Show School_Info layout
+                schoolInfoView.setVisibility(View.VISIBLE);
+                // Hide Course_Info layout
+                courseInfoView.setVisibility(View.GONE);
+                courseInfoView_2.setVisibility(View.GONE);
+
+
             }
         });
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        scrollSem_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                inner.naviSem_2();
             }
         });
+        scrollBckSem_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inner.naviSem_1();
+            }
+        });
+
         addRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inner.AddCoursePopup();
                 inner.pushData();
                 //TOASTERS
                 Toast.makeText(DrawerMenu.this, "Record Data Added", Toast.LENGTH_SHORT).show();
             }
         });
+        addRecFrmSem_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inner.pushData();
+                //TOASTERS
+                Toast.makeText(DrawerMenu.this, "Record Data Added", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         // Show the dialog
         dialog.show();

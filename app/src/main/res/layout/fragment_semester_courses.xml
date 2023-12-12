@@ -229,6 +229,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layout_Sem_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -289,9 +290,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_Sem_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:background="@drawable/form_input_background">
 
                 <TextView
@@ -349,9 +352,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_Sem_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:background="@drawable/form_input_background">
 
                 <TextView
@@ -409,9 +414,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_Sem_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:background="@drawable/form_input_background">
 
                 <TextView
