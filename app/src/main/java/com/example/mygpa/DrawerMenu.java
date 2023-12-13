@@ -173,6 +173,7 @@ public class DrawerMenu extends AppCompatActivity {
             private SchoolFormData AddSchoolPopup() {
 
                 final EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
+                final EditText indexNumber = dialog.findViewById(R.id.indextNumberEditText);
                 final EditText programmeName = dialog.findViewById(R.id.programEditText);
                 final EditText startDate = dialog.findViewById(R.id.startDateEditText);
                 final EditText endDate = dialog.findViewById(R.id.endDateEditText);
@@ -182,6 +183,7 @@ public class DrawerMenu extends AppCompatActivity {
                 final RadioButton radio5_0 = dialog.findViewById(R.id.radio_5_0);
 
                 String nameOfSchool = schoolName.getText().toString().trim();
+                String idNumber = indexNumber.getText().toString().trim();
                 String programme = programmeName.getText().toString().trim();
                 String dateStart = startDate.getText().toString().trim();
                 String dateEnd = endDate.getText().toString().trim();
@@ -193,6 +195,10 @@ public class DrawerMenu extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(nameOfSchool)) {
                     schoolName.setError("Enter Name of School");
+                    return null;
+                }
+                if (TextUtils.isEmpty(idNumber)) {
+                    indexNumber.setError("Enter Index No.");
                     return null;
                 }
                 if (TextUtils.isEmpty(programme)) {
@@ -226,7 +232,7 @@ public class DrawerMenu extends AppCompatActivity {
                 naviSem_1();
 
 
-                SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
+                SchoolFormData data = new SchoolFormData(nameOfSchool, idNumber, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
                 return data;
             }
 

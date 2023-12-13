@@ -32,6 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:background="@drawable/layout_background"
                     android:text="Fill this Form"
                     android:textColor="@color/white" />
 
@@ -49,6 +50,17 @@
                         android:background="@drawable/form_input_background"
                         android:hint="Name of School"
                         android:padding="5dp"
+                        android:maxLines="2"
+                        android:textColorHint="@color/lavender" />
+
+                    <EditText
+                        android:id="@+id/indextNumberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="2.5dp"
+                        android:background="@drawable/form_input_background"
+                        android:hint="Index No."
+                        android:padding="5dp"
                         android:textColorHint="@color/lavender" />
 
                     <EditText
@@ -58,41 +70,56 @@
                         android:layout_marginVertical="2.5dp"
                         android:background="@drawable/form_input_background"
                         android:hint="Programme"
+                        android:maxLines="2"
                         android:padding="5dp"
                         android:textColorHint="@color/lavender" />
 
-                    <EditText
-                        android:id="@+id/startDateEditText"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="2.5dp"
-                        android:background="@drawable/form_input_background"
-                        android:hint="Start Date"
-                        android:inputType="date"
-                        android:padding="5dp"
-                        android:textColorHint="@color/lavender" />
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/endDateEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="2.5dp"
-                        android:background="@drawable/form_input_background"
-                        android:hint="End Date"
-                        android:inputType="date"
-                        android:padding="5dp"
-                        android:textColorHint="@color/lavender" />
+                        <EditText
+                            android:id="@+id/startDateEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="2.5dp"
+                            android:background="@drawable/form_input_background"
+                            android:hint="Start Year"
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:layout_marginRight="2.5dp"
+                            android:textColorHint="@color/lavender" />
 
-                    <EditText
-                        android:id="@+id/semestersEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="2.5dp"
-                        android:background="@drawable/form_input_background"
-                        android:hint="Number of Semesters"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:textColorHint="@color/lavender" />
+                        <EditText
+                            android:id="@+id/endDateEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="2.5dp"
+                            android:background="@drawable/form_input_background"
+                            android:hint="End Year"
+                            android:layout_marginHorizontal="2.5dp"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:padding="5dp"
+                            android:textColorHint="@color/lavender" />
+
+                        <EditText
+                            android:id="@+id/semestersEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="2.5dp"
+                            android:background="@drawable/form_input_background"
+                            android:hint="No. Sems"
+                            android:inputType="number"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="2.5dp"
+                            android:padding="5dp"
+                            android:textColorHint="@color/lavender" />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -152,7 +179,7 @@
         <!-- Course Info Sem 1-->
         <LinearLayout
             android:id="@+id/Course_Info"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_weight="1"

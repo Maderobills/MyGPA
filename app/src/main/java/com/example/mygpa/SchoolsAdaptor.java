@@ -32,7 +32,7 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
     private List<SchoolFormData> schoolsDataList;
     private Context contextSchool;
     private FirebaseAuth mAuth;
-    String schName, gpaSc, nSem, dateS, dateE, idNo;
+    String schName, gpaSc, nSem, dateS, dateE, idNo, proG;
 
     SemCoursesAdaptor adapterCourses;
     ArrayList<SemCourseFormData> courseList;
@@ -66,6 +66,8 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
             public void onClick(View v) {
                 // Retrieve the school data for the clicked item
                 schName = schoolData.getSchoolName();
+                idNo = schoolData.getIndexNumber();
+                proG = schoolData.getProgram();
                 gpaSc = schoolData.getGpaScale();
                 nSem = schoolData.getNumberOfSemesters();
                 dateS = schoolData.getStartDate();
@@ -76,7 +78,7 @@ class SchoolsAdaptor extends RecyclerView.Adapter<SchoolsAdaptor.SchoolViewHolde
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 SemesterCourses semesterCoursesFragment = new SemesterCourses();
-                semesterCoursesFragment.setSchoolData(schName, gpaSc, nSem, dateS, dateE);
+                semesterCoursesFragment.setSchoolData(schName, idNo, proG, gpaSc, nSem, dateS, dateE);
 
                 fragmentTransaction.replace(R.id.frame_layout, semesterCoursesFragment);
                 fragmentTransaction.addToBackStack(null);
