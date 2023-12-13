@@ -40,11 +40,16 @@ public class SemesterCourses extends Fragment {
 
     private FirebaseAuth mAuth;
     private TextView schoolName;
+    private TextView idN;
+    private TextView proN;
+
     private TextView gpaScale;
     private TextView semN;
     private TextView daS;
     private TextView daE;
     private String storedSchName;
+    private String storedIdno;
+    private String storedProG;
     private String storedGpaSc;
     private String storedNSem;
     private String storedDateS;
@@ -84,12 +89,16 @@ public class SemesterCourses extends Fragment {
         courseRecycler_2.setAdapter(adapterCourses_2);
 
         schoolName = myView.findViewById(R.id.School_name);
+        idN = myView.findViewById(R.id.indexNo_text);
+        proN = myView.findViewById(R.id.inProgram);
         gpaScale = myView.findViewById(R.id.scale_type);
         semN = myView.findViewById(R.id.sem_number);
         daS = myView.findViewById(R.id.sDate_text);
         daE = myView.findViewById(R.id.eDate_text);
 
         schoolName.setText(storedSchName);
+        idN.setText(storedIdno);
+        proN.setText(storedProG);
         gpaScale.setText(storedGpaSc);
         semN.setText(storedNSem);
         daS.setText(storedDateS + " / ");
@@ -170,8 +179,10 @@ public class SemesterCourses extends Fragment {
 
     }
 
-    public void setSchoolData(String schName, String gpaSc, String nSem, String dateS, String dateE) {
+    public void setSchoolData(String schName, String idNo, String proG, String gpaSc, String nSem, String dateS, String dateE) {
         storedSchName = schName;
+        storedIdno = idNo;
+        storedProG = proG;
         storedGpaSc = gpaSc;
         storedNSem = nSem;
         storedDateS = dateS;

@@ -142,7 +142,7 @@
                 android:textColor="@color/black"
                 android:textSize="12dp"/>
             <TextView
-                android:id="@+id/type_txt_income"
+                android:id="@+id/inProgram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -221,7 +221,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:paddingBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"

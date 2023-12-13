@@ -173,6 +173,7 @@ public class DrawerMenu extends AppCompatActivity {
             private SchoolFormData AddSchoolPopup() {
 
                 final EditText schoolName = dialog.findViewById(R.id.schoolNameEditText);
+                final EditText indexNumber = dialog.findViewById(R.id.indextNumberEditText);
                 final EditText programmeName = dialog.findViewById(R.id.programEditText);
                 final EditText startDate = dialog.findViewById(R.id.startDateEditText);
                 final EditText endDate = dialog.findViewById(R.id.endDateEditText);
@@ -182,6 +183,7 @@ public class DrawerMenu extends AppCompatActivity {
                 final RadioButton radio5_0 = dialog.findViewById(R.id.radio_5_0);
 
                 String nameOfSchool = schoolName.getText().toString().trim();
+                String idNumber = indexNumber.getText().toString().trim();
                 String programme = programmeName.getText().toString().trim();
                 String dateStart = startDate.getText().toString().trim();
                 String dateEnd = endDate.getText().toString().trim();
@@ -193,6 +195,10 @@ public class DrawerMenu extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(nameOfSchool)) {
                     schoolName.setError("Enter Name of School");
+                    return null;
+                }
+                if (TextUtils.isEmpty(idNumber)) {
+                    indexNumber.setError("Enter Index No.");
                     return null;
                 }
                 if (TextUtils.isEmpty(programme)) {
@@ -226,7 +232,7 @@ public class DrawerMenu extends AppCompatActivity {
                 naviSem_1();
 
 
-                SchoolFormData data = new SchoolFormData(nameOfSchool, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
+                SchoolFormData data = new SchoolFormData(nameOfSchool, idNumber, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
                 return data;
             }
 
@@ -245,6 +251,7 @@ public class DrawerMenu extends AppCompatActivity {
                         case 1:
                             scrollSem_2.setVisibility(View.GONE);
                             scrollSem_3.setVisibility(View.GONE);
+
                             break;
                         case 2:
                             scrollSem_2.setVisibility(View.VISIBLE);
@@ -268,6 +275,198 @@ public class DrawerMenu extends AppCompatActivity {
                 courseInfoView_2.setVisibility(View.VISIBLE);
             }
 
+            private void addCourseDetailSelector(){
+
+                TextView sel1 = dialog.findViewById(R.id.sel_1);
+                TextView sel2 = dialog.findViewById(R.id.sel_2);
+                TextView sel3 = dialog.findViewById(R.id.sel_3);
+                TextView sel4 = dialog.findViewById(R.id.sel_4);
+                TextView sel5 = dialog.findViewById(R.id.sel_5);
+                TextView sel6 = dialog.findViewById(R.id.sel_6);
+                TextView sel7 = dialog.findViewById(R.id.sel_7);
+                TextView sel8 = dialog.findViewById(R.id.sel_8);
+
+                sel1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel1.setTextColor(getResources().getColor(R.color.lavender));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+
+                sel2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel2.setTextColor(getResources().getColor(R.color.lavender));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+                sel3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel3.setTextColor(getResources().getColor(R.color.lavender));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+                sel4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel4.setTextColor(getResources().getColor(R.color.lavender));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+
+                sel5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel5.setTextColor(getResources().getColor(R.color.lavender));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+                sel6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel6.setTextColor(getResources().getColor(R.color.lavender));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_w);
+
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+                sel7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel7.setTextColor(getResources().getColor(R.color.lavender));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_w);
+
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                    }
+                });
+                sel8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel8.setTextColor(getResources().getColor(R.color.lavender));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                    }
+                });
+
+            }
             class AddCoursesSem_1 {
                 private SemCourseFormData AddCoursePopup() {
 
@@ -884,6 +1083,7 @@ public class DrawerMenu extends AppCompatActivity {
             }
         });
 
+        inner.addCourseDetailSelector();
 
         // Show the dialog
         dialog.show();

@@ -7,7 +7,7 @@ import java.util.List;
 
 @IgnoreExtraProperties
 public class SchoolFormData {
-    private String schoolName, program, startDate, endDate;
+    private String schoolName, indexNumber, program, startDate, endDate;
     private String numberOfSemesters;
     private String gpaScale; // Use float to store GPA scale (e.g., 4.0 or 5.0)
     private boolean visibility;
@@ -17,8 +17,9 @@ public class SchoolFormData {
         // Default constructor with no arguments
     }
 
-    public SchoolFormData(String schoolName, String program, String startDate, String endDate, String numberOfSemesters, String gpaScale) {
+    public SchoolFormData(String schoolName, String indexNumber, String program, String startDate, String endDate, String numberOfSemesters, String gpaScale) {
         this.schoolName = schoolName;
+        this.indexNumber = indexNumber;
         this.program = program;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -34,6 +35,14 @@ public class SchoolFormData {
 
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
+    }
+
+    public String getIndexNumber() {
+        return indexNumber;
+    }
+
+    public void setIndexNumber(String indexNumber) {
+        this.indexNumber = indexNumber;
     }
 
     public String getProgram() {
