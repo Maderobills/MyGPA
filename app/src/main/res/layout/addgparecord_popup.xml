@@ -177,7 +177,7 @@
         <!-- Course Info Sem 1-->
         <LinearLayout
             android:id="@+id/Course_Info"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_weight="1"
