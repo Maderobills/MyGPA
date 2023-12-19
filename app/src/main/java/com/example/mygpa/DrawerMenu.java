@@ -306,6 +306,8 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse.viewCourseDetail_1();
                     }
                 });
 
@@ -329,6 +331,8 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse.viewCourseDetail_2();
                     }
                 });
                 sel3.setOnClickListener(new View.OnClickListener() {
@@ -351,6 +355,8 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse.viewCourseDetail_3();
                     }
                 });
                 sel4.setOnClickListener(new View.OnClickListener() {
@@ -373,9 +379,9 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse.viewCourseDetail_4();
                     }
                 });
-
                 sel5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -396,6 +402,7 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse.viewCourseDetail_5();
                     }
                 });
                 sel6.setOnClickListener(new View.OnClickListener() {
@@ -419,6 +426,7 @@ public class DrawerMenu extends AppCompatActivity {
                         sel7.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse.viewCourseDetail_6();
                     }
                 });
                 sel7.setOnClickListener(new View.OnClickListener() {
@@ -442,6 +450,7 @@ public class DrawerMenu extends AppCompatActivity {
                         sel1.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel8.setTextColor(getResources().getColor(R.color.white));
                         sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse.viewCourseDetail_7();
                     }
                 });
                 sel8.setOnClickListener(new View.OnClickListener() {
@@ -462,9 +471,372 @@ public class DrawerMenu extends AppCompatActivity {
                         sel6.setBackgroundResource(R.drawable.r_backgrd_t);
                         sel1.setTextColor(getResources().getColor(R.color.white));
                         sel1.setBackgroundResource(R.drawable.r_backgrd_t);
-
+                        viewCourse.viewCourseDetail_8();
                     }
                 });
+
+            }
+            private void addCourseDetailSelector_2(){
+
+                TextView sel1 = dialog.findViewById(R.id.sel_s2_1);
+                TextView sel2 = dialog.findViewById(R.id.sel_s2_2);
+                TextView sel3 = dialog.findViewById(R.id.sel_s2_3);
+                TextView sel4 = dialog.findViewById(R.id.sel_s2_4);
+                TextView sel5 = dialog.findViewById(R.id.sel_s2_5);
+                TextView sel6 = dialog.findViewById(R.id.sel_s2_6);
+                TextView sel7 = dialog.findViewById(R.id.sel_s2_7);
+                TextView sel8 = dialog.findViewById(R.id.sel_s2_8);
+
+                sel1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel1.setTextColor(getResources().getColor(R.color.lavender));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse_2.viewCourseDetail_1();
+                    }
+                });
+
+                sel2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel2.setTextColor(getResources().getColor(R.color.lavender));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse_2.viewCourseDetail_2();
+                    }
+                });
+                sel3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel3.setTextColor(getResources().getColor(R.color.lavender));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+
+                        viewCourse_2.viewCourseDetail_3();
+                    }
+                });
+                sel4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel4.setTextColor(getResources().getColor(R.color.lavender));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse_2.viewCourseDetail_4();
+                    }
+                });
+                sel5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel5.setTextColor(getResources().getColor(R.color.lavender));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse_2.viewCourseDetail_5();
+                    }
+                });
+                sel6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel6.setTextColor(getResources().getColor(R.color.lavender));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_w);
+
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel7.setTextColor(getResources().getColor(R.color.white));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse_2.viewCourseDetail_6();
+                    }
+                });
+                sel7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel7.setTextColor(getResources().getColor(R.color.lavender));
+                        sel7.setBackgroundResource(R.drawable.r_backgrd_w);
+
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel8.setTextColor(getResources().getColor(R.color.white));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse_2.viewCourseDetail_7();
+                    }
+                });
+                sel8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sel8.setTextColor(getResources().getColor(R.color.lavender));
+                        sel8.setBackgroundResource(R.drawable.r_backgrd_w);
+
+                        sel2.setTextColor(getResources().getColor(R.color.white));
+                        sel2.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel3.setTextColor(getResources().getColor(R.color.white));
+                        sel3.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel4.setTextColor(getResources().getColor(R.color.white));
+                        sel4.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel5.setTextColor(getResources().getColor(R.color.white));
+                        sel5.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel6.setTextColor(getResources().getColor(R.color.white));
+                        sel6.setBackgroundResource(R.drawable.r_backgrd_t);
+                        sel1.setTextColor(getResources().getColor(R.color.white));
+                        sel1.setBackgroundResource(R.drawable.r_backgrd_t);
+                        viewCourse_2.viewCourseDetail_8();
+                    }
+                });
+
+            }
+            class viewCourseDetailInput{
+                final LinearLayout viewCourse_1 = dialog.findViewById(R.id.course_details_1);
+                final LinearLayout viewCourse_2 = dialog.findViewById(R.id.course_details_2);
+                final LinearLayout viewCourse_3 = dialog.findViewById(R.id.course_details_3);
+                final LinearLayout viewCourse_4 = dialog.findViewById(R.id.course_details_4);
+                final LinearLayout viewCourse_5 = dialog.findViewById(R.id.course_details_5);
+                final LinearLayout viewCourse_6 = dialog.findViewById(R.id.course_details_6);
+
+                private void viewCourseDetail_1(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.GONE);
+                    viewCourse_3.setVisibility(View.GONE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_2(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.GONE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_3(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_4(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_5(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_6(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+                }
+                private void viewCourseDetail_7(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+
+                }
+                private void viewCourseDetail_8(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+            class viewCourseDetailInput_2{
+                final LinearLayout viewCourse_1 = dialog.findViewById(R.id.course_details_s2_1);
+                final LinearLayout viewCourse_2 = dialog.findViewById(R.id.course_details_s2_2);
+                final LinearLayout viewCourse_3 = dialog.findViewById(R.id.course_details_s2_3);
+                final LinearLayout viewCourse_4 = dialog.findViewById(R.id.course_details_s2_4);
+                final LinearLayout viewCourse_5 = dialog.findViewById(R.id.course_details_s2_5);
+                final LinearLayout viewCourse_6 = dialog.findViewById(R.id.course_details_s2_6);
+
+                private void viewCourseDetail_1(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.GONE);
+                    viewCourse_3.setVisibility(View.GONE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_2(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.GONE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_3(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.GONE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_4(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.GONE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_5(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.GONE);
+
+                }
+                private void viewCourseDetail_6(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+                }
+                private void viewCourseDetail_7(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+
+                }
+                private void viewCourseDetail_8(){
+                    viewCourse_1.setVisibility(View.VISIBLE);
+                    viewCourse_2.setVisibility(View.VISIBLE);
+                    viewCourse_3.setVisibility(View.VISIBLE);
+                    viewCourse_4.setVisibility(View.VISIBLE);
+                    viewCourse_5.setVisibility(View.VISIBLE);
+                    viewCourse_6.setVisibility(View.VISIBLE);
+
+                }
 
             }
             class AddCoursesSem_1 {
@@ -930,6 +1302,8 @@ public class DrawerMenu extends AppCompatActivity {
             }
             AddCoursesSem_1 inner_1 = new AddCoursesSem_1();
             AddCoursesSem_2 inner_2 = new AddCoursesSem_2();
+            viewCourseDetailInput viewCourse = new viewCourseDetailInput();
+            viewCourseDetailInput_2 viewCourse_2 = new viewCourseDetailInput_2();
 
 
             private void pushData() {
@@ -1084,6 +1458,7 @@ public class DrawerMenu extends AppCompatActivity {
         });
 
         inner.addCourseDetailSelector();
+        inner.addCourseDetailSelector_2();
 
         // Show the dialog
         dialog.show();
