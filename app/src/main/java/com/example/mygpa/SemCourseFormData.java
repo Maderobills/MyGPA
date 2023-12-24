@@ -3,6 +3,7 @@ package com.example.mygpa;
 public class SemCourseFormData {
     private String semHeading;
     private String courseName;
+    private String gradePoint;
     private String courseCode;
     private String courseScore;
 
@@ -13,9 +14,10 @@ public class SemCourseFormData {
     }
 
     // Constructor with semester heading and course details
-    public SemCourseFormData(String semHeading, String courseName, String courseCode, String courseScore, String creditHours) {
+    public SemCourseFormData(String semHeading, String courseName, String gradePoint, String courseCode, String courseScore, String creditHours) {
         this.semHeading = semHeading;
         this.courseName = courseName;
+        this.gradePoint = gradePoint;
         this.courseCode = courseCode;
         this.courseScore = courseScore;
         this.creditHours = creditHours;
@@ -36,6 +38,12 @@ public class SemCourseFormData {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+    public String getGradePoint() {
+        return gradePoint;
+    }
+    public void setGradePoint(String gradePoint) {
+        this.gradePoint = gradePoint;
     }
 
     public String getCourseCode() {

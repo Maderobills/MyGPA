@@ -15,7 +15,10 @@ import java.util.List;
 public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.ViewHolder> {
 
     private List<SemCourseFormData> semCoursesList;
+    private List<SchoolFormData> schoolList;
     private Context contextSemCourses;
+
+    private String storedGpaSc;
 
     public SemCoursesAdaptor(Context contextSemCourses, List<SemCourseFormData> semCoursesList) {
         this.contextSemCourses = contextSemCourses;
@@ -39,6 +42,7 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
         holder.courseCodeTextView.setText(semCourse.getCourseCode());
         holder.courseScoreTextView.setText(semCourse.getCourseScore());
         holder.creditHoursTextView.setText(semCourse.getCreditHours());
+        holder.gradePointTextView.setText(semCourse.getGradePoint());
 
     }
 
@@ -53,11 +57,13 @@ public class SemCoursesAdaptor extends RecyclerView.Adapter<SemCoursesAdaptor.Vi
         TextView courseCodeTextView;
         TextView courseScoreTextView;
         TextView creditHoursTextView;
+        TextView gradePointTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //semHeadingTextView = itemView.findViewById(R.id.numberOfSemester1);
             courseNameTextView = itemView.findViewById(R.id.nameOfCourse);
+            gradePointTextView = itemView.findViewById(R.id.gradePointOfCourse);
             courseCodeTextView = itemView.findViewById(R.id.codeOfCourse);
             courseScoreTextView = itemView.findViewById(R.id.scoreOfCourse);
             creditHoursTextView = itemView.findViewById(R.id.creditHourCourse);

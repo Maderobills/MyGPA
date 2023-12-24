@@ -104,9 +104,10 @@ public class SemesterCourses extends Fragment {
         daS.setText(storedDateS + " / ");
         daE.setText(storedDateE);
 
+
+
         int getSnum = Integer.parseInt(storedNSem);
         viewSemLayout(getSnum);
-
 
         readCourses(storedSchName);
         readCourses_2(storedSchName);
