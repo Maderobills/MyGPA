@@ -167,9 +167,7 @@ public class DrawerMenu extends AppCompatActivity {
 
         Button scrollSem_3 = dialog.findViewById(R.id.nextScrollButton_2);
         Button addRecFrmSem_2 =dialog.findViewById(R.id.addButton_s2);
-
-        final String[] selectedGpaScale = {""};
-
+        final String[] getSelectedGpaScale = {"0.0"};
         // Define a local inner class
         class recAddClass {
             private SchoolFormData AddSchoolPopup() {
@@ -193,6 +191,8 @@ public class DrawerMenu extends AppCompatActivity {
                 int selectedRadioButtonId = gpaRadioGroup.getCheckedRadioButtonId();
                 String scale4 = radio4_0.getText().toString().trim();
                 String scale5 = radio5_0.getText().toString().trim();
+
+                String selectedGpaScale = " ";
 
 
                 if (TextUtils.isEmpty(nameOfSchool)) {
@@ -223,18 +223,34 @@ public class DrawerMenu extends AppCompatActivity {
 
 
                 if (selectedRadioButtonId == radio4_0.getId()) {
-                    selectedGpaScale[0] = "4.0";
+                    selectedGpaScale = "4.0";
                 } else if (selectedRadioButtonId == radio5_0.getId()) {
-                    selectedGpaScale[0] = "5.0";
+                    selectedGpaScale = "5.0";
                 } else {
                     Toast.makeText(DrawerMenu.this, "Select GPA scale", Toast.LENGTH_SHORT).show();
                 }
 
                 naviSem_1();
-                inner_1.AddCoursePopup(Arrays.toString(selectedGpaScale));
+                getSelectedGpaScale[0] = selectedGpaScale;
+                inner_1.AddCoursePopup(getSelectedGpaScale[0]);
+                inner_1.AddCoursePopup_2(getSelectedGpaScale[0]);
+                inner_1.AddCoursePopup_3(getSelectedGpaScale[0]);
+                inner_1.AddCoursePopup_4(getSelectedGpaScale[0]);
+                inner_1.AddCoursePopup_5(getSelectedGpaScale[0]);
+                inner_1.AddCoursePopup_6(getSelectedGpaScale[0]);
+
+                inner_2.AddCoursePopup_s2(getSelectedGpaScale[0]);
+                inner_2.AddCoursePopup_2_s2(getSelectedGpaScale[0]);
+                inner_2.AddCoursePopup_3_s2(getSelectedGpaScale[0]);
+                inner_2.AddCoursePopup_4_s2(getSelectedGpaScale[0]);
+                inner_2.AddCoursePopup_5_s2(getSelectedGpaScale[0]);
+                inner_2.AddCoursePopup_6_s2(getSelectedGpaScale[0]);
 
 
-                SchoolFormData data = new SchoolFormData(nameOfSchool, idNumber, programme, dateStart, dateEnd, semNumber, selectedGpaScale[0]);
+
+
+
+                SchoolFormData data = new SchoolFormData(nameOfSchool, idNumber, programme, dateStart, dateEnd, semNumber, selectedGpaScale);
                 return data;
             }
 
@@ -859,20 +875,12 @@ public class DrawerMenu extends AppCompatActivity {
                     String scoreCourse_1 = courseScore_1.getText().toString().trim();
                     String hoursCredit_1 = creditHours_1.getText().toString().trim();
 
-                    double score_1 = Double.parseDouble(scoreCourse_1);
-                    double credit_1 = Double.parseDouble(getScale);
-                    String gradeP = String.valueOf((score_1 * credit_1)/100);
-
                     if (TextUtils.isEmpty(headingSem)) {
                         semHeading.setError("Enter Semester Number");
                         return null;
                     }
                     if (TextUtils.isEmpty(nameCourse_1)) {
                         courseName_1.setError("Enter Course Title");
-                        return null;
-                    }
-                    if (TextUtils.isEmpty(gradeP)) {
-                        semHeading.setError("Enter Semester Number");
                         return null;
                     }
                     if (TextUtils.isEmpty(codeCourse_1)) {
@@ -883,17 +891,18 @@ public class DrawerMenu extends AppCompatActivity {
                         creditHours_1.setError("Enter Credit Hours");
                         return null;
                     }
-        /*if (TextUtils.isEmpty(scoreCourse_1)){
-            courseScore_1.setError("Specify End Date");
-            return;
-        }*/
 
-                    SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, gradeP, codeCourse_1, scoreCourse_1, hoursCredit_1);
+                    Double score_1 = Double.parseDouble(scoreCourse_1);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse = new SemCourseFormData(headingSem, nameCourse_1, proGrade, codeCourse_1, scoreCourse_1, hoursCredit_1);
                     return dataSemCourse;
 
                 }
 
-                /*private SemCourseFormData AddCoursePopup_2() {
+                private SemCourseFormData AddCoursePopup_2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -925,12 +934,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_2 = new SemCourseFormData(headingSem, nameCourse_2, codeCourse_2, scoreCourse_2, hoursCredit_2);
+                    Double score_1 = Double.parseDouble(scoreCourse_2);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_2 = new SemCourseFormData(headingSem, nameCourse_2, proGrade, codeCourse_2, scoreCourse_2, hoursCredit_2);
                     return dataSemCourse_2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_3() {
+                private SemCourseFormData AddCoursePopup_3(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -962,12 +976,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_3 = new SemCourseFormData(headingSem, nameCourse_3, codeCourse_3, scoreCourse_3, hoursCredit_3);
+                    Double score_1 = Double.parseDouble(scoreCourse_3);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_3 = new SemCourseFormData(headingSem, nameCourse_3, proGrade, codeCourse_3, scoreCourse_3, hoursCredit_3);
                     return dataSemCourse_3;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_4() {
+                private SemCourseFormData AddCoursePopup_4(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -999,12 +1018,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_4 = new SemCourseFormData(headingSem, nameCourse_4, codeCourse_4, scoreCourse_4, hoursCredit_4);
+                    Double score_1 = Double.parseDouble(scoreCourse_4);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_4 = new SemCourseFormData(headingSem, nameCourse_4, proGrade, codeCourse_4, scoreCourse_4, hoursCredit_4);
                     return dataSemCourse_4;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_5() {
+                private SemCourseFormData AddCoursePopup_5(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -1036,12 +1060,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_5 = new SemCourseFormData(headingSem, nameCourse_5, codeCourse_5, scoreCourse_5, hoursCredit_5);
+                    Double score_1 = Double.parseDouble(scoreCourse_5);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_5 = new SemCourseFormData(headingSem, nameCourse_5, proGrade, codeCourse_5, scoreCourse_5, hoursCredit_5);
                     return dataSemCourse_5;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_6() {
+                private SemCourseFormData AddCoursePopup_6(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead);
@@ -1074,13 +1103,18 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_6 = new SemCourseFormData(headingSem, nameCourse_6, codeCourse_6, scoreCourse_6, hoursCredit_6);
+                    Double score_1 = Double.parseDouble(scoreCourse_6);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_6 = new SemCourseFormData(headingSem, nameCourse_6, proGrade, codeCourse_6, scoreCourse_6, hoursCredit_6);
                     return dataSemCourse_6;
 
-                }*/
+                }
             }
             class AddCoursesSem_2 {
-               /* private SemCourseFormData AddCoursePopup_s2() {
+                private SemCourseFormData AddCoursePopup_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1113,12 +1147,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_s2 = new SemCourseFormData(headingSem, nameCourse_1, codeCourse_1, scoreCourse_1, hoursCredit_1);
+                    Double score_1 = Double.parseDouble(scoreCourse_1);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_s2 = new SemCourseFormData(headingSem, nameCourse_1, proGrade, codeCourse_1, scoreCourse_1, hoursCredit_1);
                     return dataSemCourse_s2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_2_s2() {
+                private SemCourseFormData AddCoursePopup_2_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1150,12 +1189,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_2_s2 = new SemCourseFormData(headingSem, nameCourse_2, codeCourse_2, scoreCourse_2, hoursCredit_2);
+                    Double score_1 = Double.parseDouble(scoreCourse_2);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_2_s2 = new SemCourseFormData(headingSem, nameCourse_2, proGrade, codeCourse_2, scoreCourse_2, hoursCredit_2);
                     return dataSemCourse_2_s2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_3_s2() {
+                private SemCourseFormData AddCoursePopup_3_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1188,12 +1232,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_3_s2 = new SemCourseFormData(headingSem, nameCourse_3, codeCourse_3, scoreCourse_3, hoursCredit_3);
+                    Double score_1 = Double.parseDouble(scoreCourse_3);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_3_s2 = new SemCourseFormData(headingSem, nameCourse_3, proGrade, codeCourse_3, scoreCourse_3, hoursCredit_3);
                     return dataSemCourse_3_s2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_4_s2() {
+                private SemCourseFormData AddCoursePopup_4_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1226,12 +1275,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_4_s2 = new SemCourseFormData(headingSem, nameCourse_4, codeCourse_4, scoreCourse_4, hoursCredit_4);
+                    Double score_1 = Double.parseDouble(scoreCourse_4);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_4_s2 = new SemCourseFormData(headingSem, nameCourse_4, proGrade, codeCourse_4, scoreCourse_4, hoursCredit_4);
                     return dataSemCourse_4_s2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_5_s2() {
+                private SemCourseFormData AddCoursePopup_5_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1264,12 +1318,17 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_5_s2 = new SemCourseFormData(headingSem, nameCourse_5, codeCourse_5, scoreCourse_5, hoursCredit_5);
+                    Double score_1 = Double.parseDouble(scoreCourse_5);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_5_s2 = new SemCourseFormData(headingSem, nameCourse_5, proGrade, codeCourse_5, scoreCourse_5, hoursCredit_5);
                     return dataSemCourse_5_s2;
 
                 }
 
-                private SemCourseFormData AddCoursePopup_6_s2() {
+                private SemCourseFormData AddCoursePopup_6_s2(String getScale) {
 
 
                     final TextView semHeading = dialog.findViewById(R.id.semHead_2);
@@ -1302,15 +1361,20 @@ public class DrawerMenu extends AppCompatActivity {
                         return null;
                     }
 
-                    SemCourseFormData dataSemCourse_6_s2 = new SemCourseFormData(headingSem, nameCourse_6, codeCourse_6, scoreCourse_6, hoursCredit_6);
+                    Double score_1 = Double.parseDouble(scoreCourse_6);
+                    Double credit_1 = Double.parseDouble(getScale);
+                    Double gradeP = (score_1 * credit_1)/100;
+                    String proGrade = String.valueOf(gradeP);
+
+                    SemCourseFormData dataSemCourse_6_s2 = new SemCourseFormData(headingSem, nameCourse_6, proGrade, codeCourse_6, scoreCourse_6, hoursCredit_6);
                     return dataSemCourse_6_s2;
 
-                }*/
+                }
             }
-            AddCoursesSem_1 inner_1 = new AddCoursesSem_1();
-            AddCoursesSem_2 inner_2 = new AddCoursesSem_2();
-            viewCourseDetailInput viewCourse = new viewCourseDetailInput();
-            viewCourseDetailInput_2 viewCourse_2 = new viewCourseDetailInput_2();
+            final AddCoursesSem_1 inner_1 = new AddCoursesSem_1();
+            final AddCoursesSem_2 inner_2 = new AddCoursesSem_2();
+            final viewCourseDetailInput viewCourse = new viewCourseDetailInput();
+            final viewCourseDetailInput_2 viewCourse_2 = new viewCourseDetailInput_2();
 
 
             private void pushData() {
@@ -1359,41 +1423,41 @@ public class DrawerMenu extends AppCompatActivity {
 
                 // Pushing course data with unique keys
                 DatabaseReference mCoursesData_1 = mCoursesData.push();
-                mCoursesData_1.setValue(inner_1.AddCoursePopup(Arrays.toString(selectedGpaScale)));
+                mCoursesData_1.setValue(inner_1.AddCoursePopup(getSelectedGpaScale[0]));
 
-                /*mCoursesData_2 = mCoursesData.push();
-                mCoursesData_2.setValue(inner_1.AddCoursePopup_2());
+                mCoursesData_2 = mCoursesData.push();
+                mCoursesData_2.setValue(inner_1.AddCoursePopup_2(getSelectedGpaScale[0]));
 
                 mCoursesData_3 = mCoursesData.push();
-                mCoursesData_3.setValue(inner_1.AddCoursePopup_3());
+                mCoursesData_3.setValue(inner_1.AddCoursePopup_3(getSelectedGpaScale[0]));
 
                 mCoursesData_4 = mCoursesData.push();
-                mCoursesData_4.setValue(inner_1.AddCoursePopup_4());
+                mCoursesData_4.setValue(inner_1.AddCoursePopup_4(getSelectedGpaScale[0]));
 
                 mCoursesData_5 = mCoursesData.push();
-                mCoursesData_5.setValue(inner_1.AddCoursePopup_5());
+                mCoursesData_5.setValue(inner_1.AddCoursePopup_5(getSelectedGpaScale[0]));
 
                 mCoursesData_6 = mCoursesData.push();
-                mCoursesData_6.setValue(inner_1.AddCoursePopup_6());
+                mCoursesData_6.setValue(inner_1.AddCoursePopup_6(getSelectedGpaScale[0]));
 
                 ///SEM_2
                 DatabaseReference mCoursesData_2 = mCoursesData_s2.push();
-                mCoursesData_2.setValue(inner_2.AddCoursePopup_s2());
+                mCoursesData_2.setValue(inner_2.AddCoursePopup_s2(getSelectedGpaScale[0]));
 
                 mCoursesData_2_s2 = mCoursesData_s2.push();
-                mCoursesData_2_s2.setValue(inner_2.AddCoursePopup_2_s2());
+                mCoursesData_2_s2.setValue(inner_2.AddCoursePopup_2_s2(getSelectedGpaScale[0]));
 
                 mCoursesData_3_s2 = mCoursesData_s2.push();
-                mCoursesData_3_s2.setValue(inner_2.AddCoursePopup_3_s2());
+                mCoursesData_3_s2.setValue(inner_2.AddCoursePopup_3_s2(getSelectedGpaScale[0]));
 
                 mCoursesData_4_s2 = mCoursesData_s2.push();
-                mCoursesData_4_s2.setValue(inner_2.AddCoursePopup_4_s2());
+                mCoursesData_4_s2.setValue(inner_2.AddCoursePopup_4_s2(getSelectedGpaScale[0]));
 
                 mCoursesData_5_s2 = mCoursesData_s2.push();
-                mCoursesData_5_s2.setValue(inner_2.AddCoursePopup_5_s2());
+                mCoursesData_5_s2.setValue(inner_2.AddCoursePopup_5_s2(getSelectedGpaScale[0]));
 
                 mCoursesData_6_s2 = mCoursesData_s2.push();
-                mCoursesData_6_s2.setValue(inner_2.AddCoursePopup_6_s2());*/
+                mCoursesData_6_s2.setValue(inner_2.AddCoursePopup_6_s2(getSelectedGpaScale[0]));
 
                 // After saving all courses, listen for completion
                 mCoursesData.addListenerForSingleValueEvent(new ValueEventListener() {
